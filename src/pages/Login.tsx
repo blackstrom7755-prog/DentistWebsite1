@@ -21,6 +21,17 @@ const Login = () => {
     }
   }, [session, authLoading, navigate]);
 
+  // Check for expired session
+  useEffect(() => {
+    const isExpired = localStorage.getItem("dentist_session_expired");
+    if (isExpired) {
+      toast.error("Session Expired. Please login again to continue.", {
+        duration: 5000,
+      });
+      localStorage.removeItem("dentist_session_expired");
+    }
+  }, []);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {

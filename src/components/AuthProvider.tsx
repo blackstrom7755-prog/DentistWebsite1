@@ -26,6 +26,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [lastActive, setLastActive] = useState<number>(Date.now());
+
+  const INACTIVITY_THRESHOLD = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+  const handleLogout = async (reason: "expired" | "normal" = "normal") => {
+    if (reason === "expired") {
+      localStorage.setItem("dentist_session_expired", "true");
+    }
+    await supabase.auth.signOut();
+    setSession(null);
+    setUser(null);
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -49,6 +61,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     initSession();
 
+    // Re-entry check: logic for tab closure timeout
+    const checkReEntryTimeout = () => {
+      const exitTimestamp = localStorage.getItem("dentist_exit_timestamp");
+      if (exitTimestamp) {
+        const elapsed = Date.now() - parseInt(exitTimestamp, 10);
+        if (elapsed > INACTIVITY_THRESHOLD) {
+          handleLogout("expired");
+        }
+        localStorage.removeItem("dentist_exit_timestamp");
+      }
+    };
+    checkReEntryTimeout();
+
     // Listen for auth state changes
     const {
       data: { subscription },
@@ -60,11 +85,55 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     });
 
+    // Activity tracking & Inactivity timer
+    const updateActivity = () => {
+      const now = Date.now();
+      setLastActive(now);
+      localStorage.setItem("dentist_last_active", now.toString());
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        localStorage.setItem("dentist_exit_timestamp", Date.now().toString());
+      } else {
+        // When coming back, check if the "hidden" period was too long
+        const exitTimestamp = localStorage.getItem("dentist_exit_timestamp");
+        if (exitTimestamp) {
+          const elapsed = Date.now() - parseInt(exitTimestamp, 10);
+          if (elapsed > INACTIVITY_THRESHOLD) {
+            handleLogout("expired");
+          }
+          localStorage.removeItem("dentist_exit_timestamp");
+        }
+      }
+    };
+
+    window.addEventListener("mousemove", updateActivity);
+    window.addEventListener("keydown", updateActivity);
+    window.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("dentist_exit_timestamp", Date.now().toString());
+    });
+
+    const inactivityInterval = setInterval(() => {
+      if (session) {
+        const now = Date.now();
+        const elapsed = now - lastActive;
+        if (elapsed > INACTIVITY_THRESHOLD) {
+          handleLogout("expired");
+        }
+      }
+    }, 30000); // Check every 30 seconds
+
     return () => {
       mounted = false;
       subscription.unsubscribe();
+      window.removeEventListener("mousemove", updateActivity);
+      window.removeEventListener("keydown", updateActivity);
+      window.removeEventListener("visibilitychange", handleVisibilityChange);
+      clearInterval(inactivityInterval);
     };
-  }, []);
+  }, [session, lastActive]);
 
   return (
     <AuthContext.Provider value={{ session, user, loading }}>
