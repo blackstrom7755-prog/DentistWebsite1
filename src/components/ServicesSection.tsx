@@ -1,12 +1,12 @@
 import { Smile, Shield, Sparkles, Heart, Stethoscope, Baby } from "lucide-react";
 
 const services = [
-  { icon: Sparkles, title: "Teeth Whitening", desc: "Professional whitening for a radiant, confident smile.", price: "From $199" },
-  { icon: Shield, title: "Dental Implants", desc: "Permanent tooth replacement with natural-looking results.", price: "From $1,500" },
-  { icon: Smile, title: "Invisalign", desc: "Clear aligners for a straighter smile — no metal braces.", price: "From $2,500" },
-  { icon: Stethoscope, title: "Root Canal", desc: "Painless root canal treatment with advanced technology.", price: "From $400" },
-  { icon: Heart, title: "Cosmetic Veneers", desc: "Custom porcelain veneers for a perfect Hollywood smile.", price: "From $800" },
-  { icon: Baby, title: "Pediatric Care", desc: "Gentle, kid-friendly dental care in a fun environment.", price: "From $75" },
+  { icon: Sparkles, title: "Teeth Whitening", desc: "Professional whitening for a radiant, confident smile." },
+  { icon: Shield, title: "Dental Implants", desc: "Permanent tooth replacement with natural-looking results." },
+  { icon: Smile, title: "Invisalign", desc: "Clear aligners for a straighter smile — no metal braces." },
+  { icon: Stethoscope, title: "Root Canal", desc: "Painless root canal treatment with advanced technology." },
+  { icon: Heart, title: "Cosmetic Veneers", desc: "Custom porcelain veneers for a perfect Hollywood smile." },
+  { icon: Baby, title: "Pediatric Care", desc: "Gentle, kid-friendly dental care in a fun environment." },
 ];
 
 const ServicesSection = () => (
@@ -33,7 +33,6 @@ const ServicesSection = () => (
             </div>
             <h3 className="font-display text-xl font-semibold text-foreground mb-2">{s.title}</h3>
             <p className="text-muted-foreground font-body text-sm mb-4">{s.desc}</p>
-            <span className="text-sm font-semibold font-body text-navy">{s.price}</span>
           </div>
         ))}
       </div>
