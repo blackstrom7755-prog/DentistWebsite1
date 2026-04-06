@@ -32,11 +32,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     // Get initial session
     const initSession = async () => {
-      const { data: { session: currentSession } } = await supabase.auth.getSession();
-      if (mounted) {
-        setSession(currentSession);
-        setUser(currentSession?.user ?? null);
-        setLoading(false);
+      try {
+        const { data: { session: currentSession } } = await supabase.auth.getSession();
+        if (mounted) {
+          setSession(currentSession);
+          setUser(currentSession?.user ?? null);
+        }
+      } catch (error) {
+        console.error("Error getting initial session:", error);
+      } finally {
+        if (mounted) {
+          setLoading(false);
+        }
       }
     };
 
