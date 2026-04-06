@@ -6,64 +6,6 @@
 
 @layer base {
   :root {
-    --background: 170 100% 97%;
-    --foreground: 210 40% 20%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 210 80% 13%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 80% 13%;
-
-    --primary: 210 80% 15%;
-    --primary-foreground: 170 100% 95%;
-
-    --secondary: 170 100% 95%;
-    --secondary-foreground: 210 80% 15%;
-
-    --muted: 170 30% 92%;
-    --muted-foreground: 210 15% 45%;
-
-    --accent: 168 80% 78%;
-    --accent-foreground: 210 80% 13%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 170 30% 88%;
-    --input: 170 30% 88%;
-    --ring: 210 80% 15%;
-
-    --radius: 0.75rem;
-
-    --mint: 170 100% 95%;
-    --mint-deep: 168 80% 78%;
-    --navy: 210 80% 15%;
-    --navy-light: 210 60% 25%;
-    --gold: 40 90% 60%;
-
-    --gradient-hero: linear-gradient(135deg, hsl(210 80% 13%) 0%, hsl(210 60% 22%) 50%, hsl(168 50% 30%) 100%);
-    --gradient-mint: linear-gradient(135deg, hsl(170 100% 97%) 0%, hsl(170 60% 90%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(170 40% 97%) 100%);
-
-    --shadow-soft: 0 4px 24px -4px hsl(210 80% 15% / 0.08);
-    --shadow-elevated: 0 12px 40px -8px hsl(210 80% 15% / 0.12);
-    --shadow-glow: 0 0 40px hsl(168 80% 78% / 0.3);
-
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
     --background: 210 80% 6%;
     --foreground: 170 100% 95%;
     --card: 210 70% 10%;
@@ -83,6 +25,25 @@
     --border: 210 40% 18%;
     --input: 210 40% 18%;
     --ring: 168 80% 78%;
+    --radius: 0.75rem;
+
+    --mint: 170 100% 95%;
+    --mint-deep: 168 80% 78%;
+    --navy: 210 80% 15%;
+    --navy-light: 210 60% 25%;
+    --gold: 40 90% 60%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(210 80% 13%) 0%, hsl(210 60% 22%) 50%, hsl(168 50% 30%) 100%);
+    --gradient-mint: linear-gradient(135deg, hsl(170 100% 97%) 0%, hsl(170 60% 90%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(170 40% 97%) 100%);
+
+    --shadow-soft: 0 4px 24px -4px hsl(210 80% 15% / 0.08);
+    --shadow-elevated: 0 12px 40px -8px hsl(210 80% 15% / 0.12);
+    --shadow-glow: 0 0 40px hsl(168 80% 78% / 0.3);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -90,6 +51,36 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    --background: 170 100% 97%;
+    --foreground: 210 40% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 80% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 80% 13%;
+    --primary: 210 80% 15%;
+    --primary-foreground: 170 100% 95%;
+    --secondary: 170 100% 95%;
+    --secondary-foreground: 210 80% 15%;
+    --muted: 170 30% 92%;
+    --muted-foreground: 210 15% 45%;
+    --accent: 168 80% 78%;
+    --accent-foreground: 210 80% 13%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 170 30% 88%;
+    --input: 170 30% 88%;
+    --ring: 210 80% 15%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -100,6 +91,7 @@
   }
 
   body {
+    background-color: #030a12 !important; /* Force background for digital supremacy */
     @apply bg-background text-foreground font-body;
   }
 
@@ -137,4 +129,181 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ── Login Page ── */
+.login-bg {
+  background: linear-gradient(135deg, hsl(210 80% 6%) 0%, hsl(210 60% 12%) 40%, hsl(220 50% 8%) 100%);
+}
+
+.login-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.login-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, hsl(168 80% 50%) 0%, transparent 70%);
+  top: -10%;
+  right: -8%;
+  animation: orb-float-1 12s ease-in-out infinite;
+}
+
+.login-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, hsl(210 80% 45%) 0%, transparent 70%);
+  bottom: -5%;
+  left: -5%;
+  animation: orb-float-2 15s ease-in-out infinite;
+}
+
+.login-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, hsl(168 60% 60%) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orb-float-3 10s ease-in-out infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-30px, 20px) scale(1.05); }
+  66% { transform: translate(20px, -15px) scale(0.95); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, -20px) scale(1.08); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.4; }
+}
+
+.login-glass-card {
+  background: linear-gradient(
+    135deg,
+    hsla(210, 50%, 15%, 0.6) 0%,
+    hsla(210, 40%, 10%, 0.8) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid hsla(168, 80%, 78%, 0.12);
+  box-shadow:
+    0 8px 32px hsla(210, 80%, 5%, 0.5),
+    inset 0 1px 0 hsla(168, 80%, 78%, 0.08);
+}
+
+.login-input {
+  background: hsla(210, 40%, 12%, 0.6) !important;
+  border: 1px solid hsla(168, 80%, 78%, 0.1) !important;
+  color: white !important;
+  height: 48px;
+  border-radius: 0.75rem;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+.login-input::placeholder {
+  color: hsla(0, 0%, 100%, 0.25);
+}
+
+.login-input:focus {
+  border-color: hsla(168, 80%, 78%, 0.35) !important;
+  box-shadow: 0 0 0 3px hsla(168, 80%, 78%, 0.1),
+              0 0 20px hsla(168, 80%, 78%, 0.08) !important;
+  outline: none !important;
+}
+
+/* ── New-Lead Pulsing Dot ── */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.6);
+  }
+}
+
+.new-lead-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: hsl(168 80% 55%);
+  animation: pulse-dot 2s ease-in-out infinite;
+  box-shadow: 0 0 8px hsl(168 80% 55% / 0.6);
+}
+
+/* ── Patient Testimonial Cards ── */
+.testimonial-card {
+  background: linear-gradient(
+    160deg,
+    hsla(210, 50%, 14%, 0.65) 0%,
+    hsla(210, 40%, 9%, 0.85) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsla(168, 80%, 78%, 0.08);
+  box-shadow:
+    0 4px 24px hsla(210, 80%, 5%, 0.4),
+    inset 0 1px 0 hsla(168, 80%, 78%, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-card:hover {
+  border-color: hsla(168, 80%, 78%, 0.18);
+  box-shadow:
+    0 8px 40px hsla(210, 80%, 5%, 0.5),
+    0 0 30px hsla(168, 80%, 50%, 0.06),
+    inset 0 1px 0 hsla(168, 80%, 78%, 0.1);
+}
+
+/* ── Trust Sections Styles ── */
+.doctor-glow {
+  position: relative;
+}
+
+.doctor-glow::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, hsla(168, 80%, 55%, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.trust-card {
+  background: hsla(210, 50%, 14%, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsla(210, 40%, 98%, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trust-card:hover {
+  background: hsla(210, 50%, 14%, 0.6);
+  border-color: hsla(168, 80%, 55%, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
 }
