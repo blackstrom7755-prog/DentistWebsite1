@@ -14,6 +14,7 @@ import {
   Stethoscope, Loader2, ArrowDown, ArrowUp, ArrowUpDown,
   Download, MessageCircle,
 } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Appointment = {
   id: string;
@@ -319,11 +320,11 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] transition-colors duration-300">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-10">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <h1 className="font-display text-lg font-bold text-foreground flex items-center gap-2">
+          <h1 className="font-display text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <CalendarCheck className="w-5 h-5 text-primary" />
             Clinic Dashboard
             {isPolling && <Loader2 className="w-4 h-4 text-muted-foreground animate-spin ml-2" />}
@@ -334,7 +335,8 @@ const AdminDashboard = () => {
                 {session.user.email}
               </span>
             )}
-            <Button variant="ghost" size="sm" onClick={handleLogout}>
+            <ThemeToggle />
+            <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-600 dark:text-slate-300">
               <LogOut className="w-4 h-4 mr-1" /> Logout
             </Button>
           </div>
@@ -344,7 +346,7 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Card>
+          <Card className="bg-white dark:bg-zinc-900/50 border-slate-200 dark:border-zinc-800">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -357,7 +359,7 @@ const AdminDashboard = () => {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white dark:bg-zinc-900/50 border-slate-200 dark:border-zinc-800">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center">
@@ -370,7 +372,7 @@ const AdminDashboard = () => {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white dark:bg-zinc-900/50 border-slate-200 dark:border-zinc-800">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
@@ -386,7 +388,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Search + Export + Table */}
-        <Card>
+        <Card className="bg-white dark:bg-zinc-900/50 border-slate-200 dark:border-zinc-800">
           <CardHeader className="pb-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <CardTitle className="text-lg">Appointments</CardTitle>
