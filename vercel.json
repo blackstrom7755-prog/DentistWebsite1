@@ -1,7 +1,12 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "version": 2,
+  "framework": "vite",
+  "outputDirectory": "dist",
   "rewrites": [
+    {
+      "source": "/admin-dashboard",
+      "destination": "/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
