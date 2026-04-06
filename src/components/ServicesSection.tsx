@@ -12,13 +12,15 @@ const services = [
 const ServicesSection = () => (
   <section id="services" className="py-20 md:py-28 gradient-mint">
     <div className="container mx-auto px-4">
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-sm font-body font-semibold text-accent-foreground/60 tracking-widest uppercase mb-3 block">Our Services</span>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
+      <div className="text-center max-w-2xl mx-auto mb-16 px-4">
+        <span className="text-sm font-body font-bold text-white tracking-[0.2em] uppercase mb-4 block drop-shadow-sm">
+          Our Services
+        </span>
+        <h2 className="font-display text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-none drop-shadow-md">
           Comprehensive Dental Solutions
         </h2>
-        <p className="text-muted-foreground font-body text-lg">
-          From routine check-ups to advanced cosmetic procedures, we offer the full spectrum of modern dentistry.
+        <p className="text-white/80 font-body text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
+          From routine check-ups to advanced cosmetic procedures, we offer the full spectrum of modern dentistry with precision care.
         </p>
       </div>
 
