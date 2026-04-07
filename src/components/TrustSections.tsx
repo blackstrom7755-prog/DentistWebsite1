@@ -26,7 +26,7 @@ const TrustSections = () => {
   return (
     <div className="space-y-24 py-20 pb-28 bg-[#0a0f16]">
       {/* ── Meet the Doctor ── */}
-      <section id="meet-doctor" className="container mx-auto px-4">
+      <section id="doctor" className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Doctor Portrait */}
           <div className="relative group perspective-1000">
@@ -85,7 +85,7 @@ const TrustSections = () => {
       </section>
 
       {/* ── Patient Testimonials ── */}
-      <section id="patient-reviews" className="container mx-auto px-4">
+      <section id="reviews" className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm font-body font-semibold text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
             Testimonials
@@ -108,7 +108,7 @@ const TrustSections = () => {
               </div>
 
               {/* Quote */}
-              <p className="text-white/80 font-body text-base leading-relaxed mb-8 flex-1">
+              <p className="text-white font-body text-base leading-relaxed mb-8 flex-1">
                 "{t.quote}"
               </p>
 

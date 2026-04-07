@@ -2,11 +2,11 @@ import doctorImg from "@/assets/doctor-portrait.jpg";
 import { Award, GraduationCap, Users } from "lucide-react";
 
 const DoctorSection = () => (
-  <section id="doctor" className="py-20 md:py-28 gradient-mint">
+  <section id="doctor" className="py-20 md:py-28 bg-[#0a0a0a]">
     <div className="container mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div className="relative">
-          <div className="rounded-2xl overflow-hidden shadow-elevated">
+          <div className="rounded-2xl overflow-hidden shadow-glow">
             <img
               src={doctorImg}
               alt="Dr. Alex Mitchell — Lead Dentist"
@@ -16,18 +16,18 @@ const DoctorSection = () => (
               height={1024}
             />
           </div>
-          <div className="absolute -bottom-6 -right-4 md:-right-6 bg-card rounded-xl shadow-elevated p-4 border border-border/50">
-            <div className="text-2xl font-display font-bold text-foreground">15+</div>
-            <div className="text-xs text-muted-foreground font-body">Years of Excellence</div>
+          <div className="absolute -bottom-6 -right-4 md:-right-6 bg-zinc-900 rounded-xl shadow-elevated p-4 border border-white/10">
+            <div className="text-2xl font-display font-bold text-white">15+</div>
+            <div className="text-xs text-slate-300 font-body">Years of Excellence</div>
           </div>
         </div>
 
         <div>
-          <span className="text-sm font-body font-semibold text-accent-foreground/60 tracking-widest uppercase mb-3 block">Meet Your Dentist</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6">
+          <span className="text-sm font-body font-semibold text-accent tracking-widest uppercase mb-3 block">Meet Your Dentist</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
             Dr. Alex Mitchell
           </h2>
-          <p className="text-muted-foreground font-body text-lg mb-8 leading-relaxed">
+          <p className="text-white font-body text-lg mb-8 leading-relaxed">
             With over 15 years of experience and advanced training in cosmetic and implant
             dentistry, Dr. Mitchell combines clinical precision with genuine compassion
             to deliver exceptional results for every patient.
@@ -41,9 +41,9 @@ const DoctorSection = () => (
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
-                  <item.icon className="w-5 h-5 text-navy" />
+                  <item.icon className="w-5 h-5 text-accent" />
                 </div>
-                <span className="font-body text-sm text-foreground">{item.text}</span>
+                <span className="font-body text-sm text-white font-medium">{item.text}</span>
               </div>
             ))}
           </div>

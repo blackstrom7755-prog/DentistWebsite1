@@ -17,11 +17,11 @@ const Footer = () => (
             </span>
             <span>DentCare<span className="text-accent">+</span></span>
           </a>
-          <p className="text-slate-400 font-body text-base leading-relaxed max-w-xs">
+          <p className="text-white font-body text-base leading-relaxed max-w-xs">
             Precision dentistry with a personal touch. Elevating dental care with technology-driven clinical excellence.
           </p>
           <div className="pt-2">
-            <GoogleReviewBadge variant="dark" />
+            <GoogleReviewBadge />
           </div>
         </div>
 
@@ -51,14 +51,19 @@ const Footer = () => (
             The Clinic
           </h4>
           <ul className="space-y-4">
-            {["About Us", "Technology", "Reviews", "Contact"].map((s) => (
-              <li key={s}>
+            {[
+              { label: "Our Doctor", href: "#doctor" },
+              { label: "Technology", href: "#technology" },
+              { label: "Reviews", href: "#reviews" },
+              { label: "Contact", href: "#contact" }
+            ].map((s) => (
+              <li key={s.label}>
                 <a 
-                  href={`#${s.toLowerCase().replace(/\s/g, "")}`} 
-                  className="text-slate-400 hover:text-white transition-all duration-300 font-body text-sm flex items-center gap-2 group"
+                  href={s.href} 
+                  className="text-white/60 hover:text-white transition-all duration-300 font-body text-sm flex items-center gap-2 group"
                 >
                   <span className="w-0 h-[1px] bg-primary group-hover:w-4 transition-all" />
-                  {s}
+                  {s.label}
                 </a>
               </li>
             ))}
@@ -108,7 +113,7 @@ const Footer = () => (
       </div>
 
       <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-xs text-slate-500 font-body tracking-wide">
+        <p className="text-xs text-white/40 font-body tracking-wide">
           © 2026 <span className="text-white font-medium">DentCare+</span>. Clinical Excellence in Manhattan.
         </p>
         <div className="flex gap-8">
@@ -116,7 +121,7 @@ const Footer = () => (
             <a 
               key={item} 
               href="#" 
-              className="text-xs text-slate-500 hover:text-white transition-colors font-body underline-offset-4 hover:underline"
+              className="text-xs text-white/40 hover:text-white transition-colors font-body underline-offset-4 hover:underline"
             >
               {item}
             </a>

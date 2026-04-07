@@ -24,18 +24,18 @@ const HeroSection = () => {
                 <Star key={i} className="w-4 h-4 fill-gold text-gold" />
               ))}
             </div>
-            <span className="text-sm font-body text-primary-foreground/80">
+            <span className="text-sm font-body text-white font-medium">
               Rated 4.9/5 from 500+ patients
             </span>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             Precision Dentistry.
             <br />
             <span className="text-accent">Personal Care.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-primary-foreground/80 font-body max-w-lg mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>
+          <p className="text-lg md:text-xl text-white font-body max-w-lg mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>
             Experience world-class dental care with cutting-edge technology and a
             gentle touch. Your perfect smile starts here.
           </p>
@@ -46,7 +46,7 @@ const HeroSection = () => {
                 Book Appointment <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-primary-foreground/20 text-primary-foreground bg-primary-foreground/5 backdrop-blur-md hover:bg-primary-foreground/15 text-base px-8 py-6" asChild>
+            <Button size="lg" variant="outline" className="border-white/20 text-white bg-white/5 backdrop-blur-md hover:bg-white/15 text-base px-8 py-6" asChild>
               <a href="#services">Explore Services</a>
             </Button>
           </div>
@@ -59,7 +59,7 @@ const HeroSection = () => {
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl md:text-3xl font-display font-bold text-accent">{s.num}</div>
-                <div className="text-xs md:text-sm text-primary-foreground/60 font-body">{s.label}</div>
+                <div className="text-xs md:text-sm text-white font-body font-medium">{s.label}</div>
               </div>
             ))}
           </div>

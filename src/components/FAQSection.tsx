@@ -33,16 +33,16 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section id="faq" className="py-20 md:py-28 bg-background">
+  <section id="faq" className="py-20 md:py-28 bg-[#0a0a0a]">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-sm font-body font-semibold text-accent-foreground/60 tracking-widest uppercase mb-3 block">
+        <span className="text-sm font-body font-bold text-accent tracking-widest uppercase mb-3 block">
           FAQ
         </span>
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-4">
           Common Questions
         </h2>
-        <p className="text-muted-foreground font-body text-lg">
+        <p className="text-white font-body text-lg">
           Everything you need to know before your visit.
         </p>
       </div>
@@ -53,12 +53,12 @@ const FAQSection = () => (
             <AccordionItem
               key={i}
               value={`faq-${i}`}
-              className="bg-card rounded-xl border border-border/50 px-6 shadow-soft"
+              className="bg-zinc-900/50 backdrop-blur-md rounded-xl border border-white/10 px-6 shadow-soft"
             >
-              <AccordionTrigger className="font-display font-semibold text-foreground text-left hover:no-underline">
+              <AccordionTrigger className="font-display font-semibold text-white text-left hover:no-underline">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground font-body leading-loose text-[0.9375rem]">
+              <AccordionContent className="text-slate-100 font-body leading-loose text-lg">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
