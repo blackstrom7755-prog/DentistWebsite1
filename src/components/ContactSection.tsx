@@ -1,24 +1,89 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Clock, Phone, Mail, Send, Loader2 } from "lucide-react";
+import { MapPin, Clock, Phone, Mail, Send, Loader2, Calendar as CalendarIcon, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
+import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
+
+const SLOT_CAPACITY = 20;
+
+const TIME_SLOTS = [
+  { id: "09:00-11:00", label: "09:00 AM – 11:00 AM", startHour: 9 },
+  { id: "11:00-13:00", label: "11:00 AM – 01:00 PM", startHour: 11 },
+  { id: "13:00-15:00", label: "01:00 PM – 03:00 PM", startHour: 13 },
+  { id: "15:00-17:00", label: "03:00 PM – 05:00 PM", startHour: 15 },
+  { id: "17:00-19:00", label: "05:00 PM – 07:00 PM", startHour: 17 },
+];
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", preferredTime: "", serviceType: "", appointmentDate: "" });
+  const [form, setForm] = useState({ 
+    name: "", 
+    phone: "", 
+    email: "", 
+    message: "", 
+    preferredTime: "", 
+    serviceType: "", 
+    appointmentDate: "" 
+  });
+  const [slotCounts, setSlotCounts] = useState<Record<string, number>>({});
+  const [loadingSlots, setLoadingSlots] = useState(false);
   const [sending, setSending] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Update current time every minute to keep validation fresh
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 60000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Fetch slot counts when date changes
+  useEffect(() => {
+    if (form.appointmentDate) {
+      fetchSlotCounts(form.appointmentDate);
+    }
+  }, [form.appointmentDate]);
+
+  const fetchSlotCounts = async (date: string) => {
+    setLoadingSlots(true);
+    try {
+      const { data, error } = await supabase
+        .from("appointments")
+        .select("appointment_time")
+        .eq("appointment_date", date);
+
+      if (error) throw error;
+
+      const counts: Record<string, number> = {};
+      data?.forEach((app) => {
+        if (app.appointment_time) {
+          counts[app.appointment_time] = (counts[app.appointment_time] || 0) + 1;
+        }
+      });
+      setSlotCounts(counts);
+    } catch (err) {
+      console.error("Error fetching slot counts:", err);
+    } finally {
+      setLoadingSlots(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.preferredTime) {
+      toast.error("Please select a time slot");
+      return;
+    }
+
     setSending(true);
     try {
       const { error } = await supabase.from("appointments").insert({
         patient_name: form.name,
-        phone: form.phone,
+        phone: form.phone, // Reverted to 'phone' to match original schema
         email: form.email || null,
         appointment_date: form.appointmentDate || null,
         appointment_time: form.preferredTime || null,
@@ -26,16 +91,19 @@ const ContactSection = () => {
         status: "pending",
       });
       
-      if (error) {
-        console.error(error);
-        throw error;
-      }
+      if (error) throw error;
       
-      toast.success("Request Sent! Dr. will review and confirm your slot shortly.");
+      toast.success("Appointment Confirmed!", {
+        description: "We'll see you on " + form.appointmentDate + " at " + form.preferredTime,
+      });
+      
+      // Immediately re-fetch counts to update UI
+      fetchSlotCounts(form.appointmentDate);
+      
       setForm({ name: "", phone: "", email: "", message: "", preferredTime: "", serviceType: "", appointmentDate: "" });
     } catch (err: any) {
       console.error("Failed to save appointment:", err);
-      alert(err.message || "An error occurred");
+      toast.error(err.message || "An error occurred");
     } finally {
       setSending(false);
     }
@@ -46,13 +114,13 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto mb-16">
           <span className="text-sm font-body font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block">
-            Get in Touch
+            Appointment Booking
           </span>
           <h2 className="font-display text-5xl md:text-6xl font-bold text-navy mb-6 tracking-tight leading-none">
-            Book Your Visit
+            Secure Your Slot
           </h2>
           <p className="text-navy/60 font-body text-lg md:text-xl leading-relaxed mb-4 max-w-xl mx-auto">
-            Ready for your best smile? Fill out the form and we'll get back to you within 30 minutes during clinic hours.
+            Experience Dentistry 2.0. Our real-time system ensures you get the exact time you need with zero waiting.
           </p>
           <div className="flex justify-center mt-8">
             <GoogleReviewBadge />
@@ -61,65 +129,144 @@ const ContactSection = () => {
 
         <div className="grid md:grid-cols-5 gap-12 max-w-6xl mx-auto text-left">
           <div className="md:col-span-3 bg-white rounded-[2rem] shadow-xl p-8 md:p-10 border border-white/20 text-left">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Full Name *</label>
-                  <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent" />
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Patient Info */}
+              <div className="p-6 rounded-2xl bg-[#f4fbf9]/50 border border-[#f4fbf9] space-y-6">
+                <h3 className="font-display font-bold text-navy text-lg flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                    <span className="text-accent text-sm">1</span>
+                  </div>
+                  Personal Details
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="text-sm font-body font-bold text-navy mb-2 block">Full Name *</label>
+                    <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-body font-bold text-navy mb-2 block">Phone *</label>
+                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 (234) 567-890" required type="tel" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                  </div>
                 </div>
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Phone *</label>
-                  <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 (234) 567-890" required type="tel" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent" />
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Email</label>
-                  <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" type="email" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent" />
-                </div>
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Service Type</label>
-                  <Select value={form.serviceType} onValueChange={(v) => setForm({ ...form, serviceType: v })}>
-                    <SelectTrigger className="bg-[#f4fbf9] border-none h-12 rounded-xl focus:ring-accent text-muted-foreground">
-                      <SelectValue placeholder="Select service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Checkup">Checkup</SelectItem>
-                      <SelectItem value="Cleaning">Cleaning</SelectItem>
-                      <SelectItem value="Whitening">Whitening</SelectItem>
-                      <SelectItem value="Root Canal">Root Canal</SelectItem>
-                      <SelectItem value="Dental Implants">Dental Implants</SelectItem>
-                      <SelectItem value="Braces / Aligners">Braces / Aligners</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Preferred Date</label>
-                  <Input value={form.appointmentDate} onChange={(e) => setForm({ ...form, appointmentDate: e.target.value })} type="date" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-muted-foreground" />
-                </div>
-                <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Preferred Time</label>
-                  <Select value={form.preferredTime} onValueChange={(v) => setForm({ ...form, preferredTime: v })}>
-                    <SelectTrigger className="bg-[#f4fbf9] border-none h-12 rounded-xl focus:ring-accent text-muted-foreground">
-                      <SelectValue placeholder="Select time" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Morning (8 AM – 12 PM)">Morning (8 AM – 12 PM)</SelectItem>
-                      <SelectItem value="Afternoon (12 PM – 4 PM)">Afternoon (12 PM – 4 PM)</SelectItem>
-                      <SelectItem value="Evening (4 PM – 7 PM)">Evening (4 PM – 7 PM)</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="text-sm font-body font-bold text-navy mb-2 block">Email Address</label>
+                    <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" type="email" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-body font-bold text-navy mb-2 block">Service Category</label>
+                    <Select value={form.serviceType} onValueChange={(v) => setForm({ ...form, serviceType: v })}>
+                      <SelectTrigger className="bg-[#f4fbf9] border-none h-12 rounded-xl focus:ring-accent text-navy">
+                        <SelectValue placeholder="What do you need?" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["Emergency Pain", "Routine Checkup", "Teeth Whitening", "Invisalign Consult", "Dental Implants", "Braces/Aligners", "Other"].map(s => (
+                          <SelectItem key={s} value={s}>{s}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
+              {/* Date & Time Selection */}
+              <div className="p-6 rounded-2xl bg-[#f4fbf9]/50 border border-[#f4fbf9] space-y-6">
+                <h3 className="font-display font-bold text-navy text-lg flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                    <span className="text-accent text-sm">2</span>
+                  </div>
+                  Select Schedule
+                </h3>
+                
+                <div>
+                  <label className="text-sm font-body font-bold text-navy mb-2 block">Preferred Date *</label>
+                  <div className="relative">
+                    <Input 
+                      value={form.appointmentDate} 
+                      onChange={(e) => {
+                        setForm({ ...form, appointmentDate: e.target.value, preferredTime: "" });
+                      }} 
+                      type="date" 
+                      min={new Date().toISOString().split('T')[0]}
+                      required
+                      className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy relative z-10" 
+                    />
+                  </div>
+                </div>
+
+                <div className={cn("transition-all duration-500", !form.appointmentDate ? "opacity-30 pointer-events-none grayscale" : "opacity-100")}>
+                  <label className="text-sm font-body font-bold text-navy mb-4 block">Available Time Slots</label>
+                  <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
+                    {TIME_SLOTS.map((slot) => {
+                      const count = slotCounts[slot.label] || 0;
+                      const remaining = SLOT_CAPACITY - count;
+                      const isFull = remaining <= 0;
+                      
+                      // Check if time has passed (Only for Today)
+                      const todayStr = new Date().toISOString().split('T')[0];
+                      const isSelectedToday = form.appointmentDate === todayStr;
+                      const slotTime = new Date();
+                      slotTime.setHours(slot.startHour, 0, 0, 0);
+                      const hasPassed = isSelectedToday && currentTime > slotTime;
+                      
+                      const isDisabled = isFull || hasPassed;
+                      const isSelected = form.preferredTime === slot.label;
+                      
+                      const progressValue = (count / SLOT_CAPACITY) * 100;
+                      const progressColor = isFull ? "bg-red-500" : remaining < 5 ? "bg-orange-500" : "bg-emerald-500";
+
+                      return (
+                        <button
+                          key={slot.id}
+                          type="button"
+                          disabled={isDisabled}
+                          onClick={() => setForm({ ...form, preferredTime: slot.label })}
+                          className={cn(
+                            "relative flex flex-col p-4 rounded-xl border-2 transition-all text-left group overflow-hidden",
+                            isSelected 
+                              ? "border-accent bg-accent/5 ring-1 ring-accent" 
+                              : "border-transparent bg-white hover:border-[#f4fbf9] shadow-sm",
+                            isDisabled && "bg-gray-50 border-transparent opacity-60 cursor-not-allowed"
+                          )}
+                        >
+                          <div className="flex justify-between items-center mb-2">
+                            <span className={cn("font-bold text-sm", isDisabled ? "text-gray-400" : "text-navy")}>
+                              {slot.label}
+                            </span>
+                            {isSelected && <CheckCircle2 className="w-4 h-4 text-accent animate-in zoom-in" />}
+                          </div>
+                          
+                          <div className="mt-1 mb-3">
+                            <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider mb-1">
+                              <span className={isDisabled ? "text-gray-400" : "text-navy/40"}>
+                                {hasPassed ? "Window Passed" : isFull ? "Fully Booked" : `${remaining} slots left`}
+                              </span>
+                              <span className={isDisabled ? "text-gray-400" : "text-navy/40"}>
+                                {isFull ? "100%" : `${Math.round(progressValue)}%`}
+                              </span>
+                            </div>
+                            <Progress value={progressValue} className="h-1.5 bg-gray-100" indicatorClassName={progressColor} />
+                          </div>
+
+                          <span className={cn(
+                            "text-[11px] font-medium transition-colors",
+                            isDisabled ? "text-gray-400" : isSelected ? "text-accent" : "text-navy/60"
+                          )}>
+                            {hasPassed ? "Unavailable" : isFull ? "Next available: Tomorrow" : "Instant Confirmation"}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
               <div>
-                <label className="text-sm font-body font-bold text-navy mb-2 block">Additional Notes</label>
-                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any specific concerns or requests..." rows={4} className="bg-[#f4fbf9] border-none rounded-xl focus-visible:ring-accent resize-none" />
+                <label className="text-sm font-body font-bold text-navy mb-2 block">Clinical Notes (Optional)</label>
+                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about any pain, specific concerns, or medical history..." rows={3} className="bg-[#f4fbf9] border-none rounded-xl focus-visible:ring-accent resize-none p-4 text-navy" />
               </div>
-              <Button type="submit" variant="outline" className="w-full py-7 text-lg font-bold bg-white text-black border-2 border-black/10 hover:bg-zinc-50 hover:text-black hover:border-black/20 transition-all rounded-xl shadow-sm" disabled={sending}>
-                {sending ? <><Loader2 className="w-5 h-4 mr-2 animate-spin" /> Sending...</> : <><Send className="w-5 h-4 mr-2" /> Send Request</>}
+
+              <Button type="submit" className="w-full py-8 text-xl font-bold bg-[#0a192f] text-white hover:bg-navy/90 transition-all rounded-2xl shadow-xl flex items-center justify-center gap-3" disabled={sending || !form.preferredTime}>
+                {sending ? <><Loader2 className="w-6 h-6 animate-spin" /> Confirming...</> : <><CheckCircle2 className="w-6 h-6" /> Confirm Appointment</>}
               </Button>
             </form>
           </div>
