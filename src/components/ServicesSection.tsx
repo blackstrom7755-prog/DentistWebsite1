@@ -17,7 +17,7 @@ const ServicesSection = () => (
           Our Services
         </span>
         <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-none">
-          Comprehensive Dental Solutions
+          Advanced Dental Care Solutions
         </h2>
         <p className="text-white font-body text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
           From routine check-ups to advanced cosmetic procedures, we offer the full spectrum of modern dentistry with precision care.
