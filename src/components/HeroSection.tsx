@@ -30,14 +30,13 @@ const HeroSection = () => {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            Precision Dentistry.
+            Advanced Dental Excellence
             <br />
-            <span className="text-accent">Personal Care.</span>
+            <span className="text-accent">in Ahmedabad.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white font-body max-w-lg mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>
-            Experience world-class dental care with cutting-edge technology and a
-            gentle touch. Your perfect smile starts here.
+            Experience world-class dental implants and aesthetic smile makeovers with Ahmedabad’s most trusted specialists. Precision care designed for your perfect smile.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.7s" }}>
