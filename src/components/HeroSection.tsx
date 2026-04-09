@@ -29,9 +29,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            #1 Rated Dentist in Ahmedabad:
-            <br />
-            <span className="text-accent">Advanced Dental & Implant Center</span>
+            <span className="text-accent">Advanced Dental Excellence in Ahmedabad.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white font-body max-w-lg mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>

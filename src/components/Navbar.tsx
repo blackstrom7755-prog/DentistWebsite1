@@ -30,9 +30,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="font-display text-lg md:text-xl font-bold text-primary flex flex-col leading-none">
-          Advanced Dental
-          <span className="text-accent text-[10px] md:text-[12px] uppercase tracking-widest mt-1">& Implant Center</span>
+        <a href="#" className="font-display text-xl md:text-2xl font-bold text-primary">
+          DentCare<span className="text-accent">+</span>
         </a>
 
         <div className="hidden lg:flex items-center gap-8">
