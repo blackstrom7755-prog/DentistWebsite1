@@ -30,8 +30,9 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="font-display text-xl md:text-2xl font-bold text-primary">
-          DentCare<span className="text-accent">+</span>
+        <a href="#" className="font-display text-lg md:text-xl font-bold text-primary flex flex-col leading-none">
+          Advanced Dental
+          <span className="text-accent text-[10px] md:text-[12px] uppercase tracking-widest mt-1">& Implant Center</span>
         </a>
 
         <div className="hidden lg:flex items-center gap-8">
@@ -47,8 +48,8 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href="tel:+919123456789" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            <Phone className="w-4 h-4" /> +91 91234 56789
+          <a href="tel:+919876543210" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Phone className="w-4 h-4" /> +91 98765 43210
           </a>
           <Button asChild>
             <a href="#contact">Book Appointment</a>
