@@ -98,7 +98,7 @@ const AIChatWidget = () => {
       if (!assistantSoFar) {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: "Sorry, I'm having trouble connecting right now. Please call us at **+1 (234) 567-890** for assistance." },
+          { role: "assistant", content: "Sorry, I'm having trouble connecting right now. Please call us at **+91 91234 56789** for assistance." },
         ]);
       }
       console.error(e);

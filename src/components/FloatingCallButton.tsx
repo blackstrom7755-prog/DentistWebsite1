@@ -7,7 +7,7 @@ const FloatingCallButton = () => {
 
   return (
     <a
-      href="tel:+1234567890"
+      href="tel:+919123456789"
       className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-elevated flex items-center justify-center hover:scale-105 transition-transform"
       aria-label="Call Now"
     >

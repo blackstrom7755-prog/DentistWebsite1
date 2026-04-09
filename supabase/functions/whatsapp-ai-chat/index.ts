@@ -11,10 +11,10 @@ const DENTAL_SYSTEM_PROMPT = `You are DentCare+ Virtual Assistant, a friendly an
 
 ## Clinic Information
 - **Name:** DentCare+
-- **Address:** 123 Smile Avenue, New York, NY 10001
-- **Phone:** +1 (234) 567-890
-- **Email:** hello@dentcareplus.com
-- **Website:** dentcareplus.com
+- **Address:** 123 Smile Avenue, Ahmedabad, Gujarat 380001
+- **Phone:** +91 91234 56789
+- **Email:** hello@dentcareplus.in
+- **Website:** dentcareplus.in
 
 ## Clinic Hours
 - Monday–Friday: 8:00 AM – 7:00 PM
@@ -25,17 +25,17 @@ const DENTAL_SYSTEM_PROMPT = `You are DentCare+ Virtual Assistant, a friendly an
 ## Treatments & Estimated Pricing
 | Treatment | Price Range |
 |-----------|------------|
-| Dental Cleaning | $100 – $200 |
-| Teeth Whitening | $300 – $600 |
-| Dental Filling | $150 – $400 |
-| Root Canal Treatment (RCT) | $700 – $1,500 |
-| Dental Crown | $800 – $1,500 |
-| Dental Implant (single) | $1,500 – $3,000 |
-| Invisalign / Clear Aligners | $3,000 – $7,000 |
-| Braces (traditional) | $2,500 – $6,000 |
-| Dental Veneer (per tooth) | $800 – $2,000 |
-| Wisdom Tooth Extraction | $200 – $600 |
-| Full Mouth Rehabilitation | $5,000 – $15,000 |
+| Dental Cleaning | ₹1,000 – ₹3,000 |
+| Teeth Whitening | ₹5,000 – ₹12,000 |
+| Dental Filling | ₹1,500 – ₹4,000 |
+| Root Canal Treatment (RCT) | ₹5,000 – ₹12,000 |
+| Dental Crown | ₹6,000 – ₹18,000 |
+| Dental Implant (single) | ₹25,000 – ₹55,000 |
+| Invisalign / Clear Aligners | ₹80,000 – ₹2,50,000 |
+| Braces (traditional) | ₹30,000 – ₹85,000 |
+| Dental Veneer (per tooth) | ₹12,000 – ₹25,000 |
+| Wisdom Tooth Extraction | ₹3,000 – ₹8,000 |
+| Full Mouth Rehabilitation | ₹2,50,000 – ₹7,50,000 |
 
 *Prices are estimates. Final cost depends on individual case complexity. Insurance may cover part of the cost.*
 
@@ -77,7 +77,7 @@ If a patient asks about availability for a specific time, suggest reasonable slo
 - Always be warm, empathetic, and professional
 - Never diagnose conditions — say "Our dentist will evaluate this during your visit"
 - For complex medical questions, say: "That's a great question that requires our dentist's expertise. Let me have our team call you to discuss this in detail. Could you share your phone number?"
-- For emergencies (severe pain, bleeding, swelling), advise: "Please call us immediately at +1 (234) 567-890 or visit the nearest emergency room"
+- For emergencies (severe pain, bleeding, swelling), advise: "Please call us immediately at +91 91234 56789 or visit the nearest emergency room"
 - Always mention that prices are estimates and may vary
 - Encourage patients to book a consultation for personalized treatment plans
 - Keep responses concise and helpful — this is a chat, not an essay`;
@@ -147,7 +147,7 @@ serve(async (req) => {
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "Service temporarily unavailable. Please call us at +1 (234) 567-890." }),
+          JSON.stringify({ error: "Service temporarily unavailable. Please call us at +91 91234 56789." }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }

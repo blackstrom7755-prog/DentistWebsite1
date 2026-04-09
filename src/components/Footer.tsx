@@ -81,7 +81,7 @@ const Footer = () => (
                 <MapPin className="w-4 h-4" />
               </div>
               <p className="text-slate-400 font-body text-sm leading-relaxed group-hover:text-white transition-colors">
-                123 Smile Avenue, Suite 500<br />New York, NY 10001
+                123 Smile Avenue, Suite 500<br />Ahmedabad, Gujarat 380001
               </p>
             </div>
             
@@ -90,10 +90,10 @@ const Footer = () => (
                 <Phone className="w-4 h-4" />
               </div>
               <a 
-                href="tel:+1234567890" 
+                href="tel:+919123456789" 
                 className="text-slate-400 font-body text-sm hover:text-white transition-all self-center"
               >
-                +1 (234) 567-890
+                +91 91234 56789
               </a>
             </div>
 
@@ -102,10 +102,10 @@ const Footer = () => (
                 <Mail className="w-4 h-4" />
               </div>
               <a 
-                href="mailto:hello@dentcareplus.com" 
+                href="mailto:hello@dentcareplus.in" 
                 className="text-slate-400 font-body text-sm hover:text-white transition-all self-center"
               >
-                hello@dentcareplus.com
+                hello@dentcareplus.in
               </a>
             </div>
           </div>
@@ -114,7 +114,7 @@ const Footer = () => (
 
       <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-xs text-white/40 font-body tracking-wide">
-          © 2026 <span className="text-white font-medium">DentCare+</span>. Clinical Excellence in Manhattan.
+          © 2026 <span className="text-white font-medium">DentCare+</span>. Clinical Excellence in Ahmedabad.
         </p>
         <div className="flex gap-8">
           {["Privacy Policy", "Terms of Service", "Clinical Standards"].map(item => (

@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     q: "Do you accept insurance?",
-    a: "Yes! We accept most major dental insurance plans including Delta Dental, Cigna, Aetna, MetLife, and many more. Our front desk team will verify your coverage before your visit so there are no surprises.",
+    a: "Yes! We accept most major health and dental insurance plans. Our front desk team will help you with the paperwork and verify your coverage before your visit.",
   },
   {
     q: "Is there parking available?",
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: "Do you offer financing or payment plans?",
-    a: "Yes, we offer flexible payment plans through CareCredit and in-house financing options with 0% interest for up to 12 months. We want cost to never be a barrier to your dental health.",
+    a: "Yes, we offer flexible payment plans with 0% interest for up to 12 months. We also accept easy EMI options through major credit cards and financing partners. We want cost to never be a barrier to your dental health.",
   },
   {
     q: "Is teeth whitening safe?",
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "What should I do in a dental emergency?",
-    a: "Call our office immediately at +1 (234) 567-890. We reserve same-day slots for emergencies including severe pain, knocked-out teeth, and broken restorations. After hours, our answering service will connect you with the on-call dentist.",
+    a: "Call our office immediately at +91 91234 56789. We reserve same-day slots for emergencies including severe pain, knocked-out teeth, and broken restorations. After hours, our team will provide instructions for immediate care.",
   },
 ];
 

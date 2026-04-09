@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import beforeAfterImg from "@/assets/before-after.jpg";
 
 const TransformationSlider = ({ title, before, after }: { title: string; before: string; after: string }) => {
   const [position, setPosition] = useState(50);
@@ -69,9 +68,9 @@ const TransformationSlider = ({ title, before, after }: { title: string; before:
 
 const BeforeAfterSlider = () => {
   const transformations = [
-    { title: "Invisalign Transformation", before: beforeAfterImg, after: beforeAfterImg },
-    { title: "Professional Whitening", before: beforeAfterImg, after: beforeAfterImg },
-    { title: "Same-Day Implants", before: beforeAfterImg, after: beforeAfterImg },
+    { title: "Invisalign Transformation", before: "/before-after.jpg", after: "/before-after.jpg" },
+    { title: "Professional Whitening", before: "/before-after.jpg", after: "/before-after.jpg" },
+    { title: "Same-Day Implants", before: "/before-after.jpg", after: "/before-after.jpg" },
   ];
 
   return (

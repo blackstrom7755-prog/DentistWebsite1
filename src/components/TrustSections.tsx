@@ -1,8 +1,4 @@
 import { Star, Quote, Award, GraduationCap, Users, BadgeCheck } from "lucide-react";
-import doctorImg from "@/assets/doctor-arpit.png";
-import patient1 from "@/assets/patient-1.png";
-import patient2 from "@/assets/patient-2.png";
-import patient3 from "@/assets/patient-3.png";
 
 const testimonials = [
   {
@@ -17,7 +13,7 @@ const testimonials = [
   },
   {
     name: "Emily Richardson",
-    quote: "I visited from New York for Invisalign treatment. The 3D scanning technology and the level of care were equal to any top-tier clinic in the US.",
+    quote: "I visited from Satellite for Invisalign treatment. The 3D scanning technology and the level of care were equal to any top-tier clinic internationally.",
     rating: 5,
   },
 ];
@@ -33,7 +29,7 @@ const TrustSections = () => {
             <div className="doctor-glow md:max-w-md mx-auto">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-transform duration-500 group-hover:rotate-y-12 group-hover:scale-105">
                 <img
-                  src={doctorImg}
+                  src="/doctor-arpit.png"
                   alt="Dr. Arpit Shah - Specialist Orthodontist"
                   className="w-full h-auto object-cover"
                   width={600}

@@ -1,14 +1,10 @@
 import { Star, Quote, BadgeCheck } from "lucide-react";
-import patient1 from "@/assets/patient-1.png";
-import patient2 from "@/assets/patient-2.png";
-import patient3 from "@/assets/patient-3.png";
-import patient4 from "@/assets/patient-4.png";
 
 const testimonials = [
   {
     name: "Ananya Sharma",
     location: "S.G. Highway, Ahmedabad",
-    image: patient1,
+    image: "/patient-1.png",
     rating: 5,
     quote:
       "Hands down the best dental clinic on S.G. Highway! I was so nervous about my root canal, but the team made it completely painless. The laser technology they use is next-level — I walked out the same day with zero discomfort. Highly recommended to anyone in Ahmedabad looking for world-class dental care.",
@@ -17,7 +13,7 @@ const testimonials = [
   {
     name: "Rajesh Mehta",
     location: "Prahlad Nagar, Ahmedabad",
-    image: patient2,
+    image: "/patient-2.png",
     rating: 5,
     quote:
       "I've been to many dental clinics over the years, but DentCare+ is in a league of its own. The professionalism, the modern equipment, and the attention to detail during my implant procedure were outstanding. My new teeth look and feel completely natural. The staff treated me like family.",
@@ -25,17 +21,17 @@ const testimonials = [
   },
   {
     name: "Emily Richardson",
-    location: "New York, USA",
-    image: patient3,
+    location: "Bodakdev, Ahmedabad",
+    image: "/patient-3.png",
     rating: 5,
     quote:
-      "I got my Invisalign treatment here while visiting family in India, and I'm blown away by the quality. The 3D scanning was so much better than traditional molds. The clinic feels like a premium Manhattan practice — spotless, high-tech, and incredibly welcoming. Worth every bit.",
+      "I got my Invisalign treatment here after moving to Ahmedabad, and I'm blown away by the quality. The 3D scanning was so much better than traditional molds. The clinic feels like a premium international practice — spotless, high-tech, and incredibly welcoming. Worth every bit.",
     treatment: "Invisalign Treatment",
   },
   {
     name: "Arjun Patel",
     location: "Satellite, Ahmedabad",
-    image: patient4,
+    image: "/patient-4.png",
     rating: 5,
     quote:
       "I brought my entire family here for check-ups and cleanings. The pediatric care for my kids was fantastic — they actually enjoyed their visit! The whitening session I did gave me results I never thought possible. Six shades brighter in one sitting. This clinic is the real deal.",

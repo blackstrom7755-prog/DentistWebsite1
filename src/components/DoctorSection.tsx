@@ -1,4 +1,3 @@
-import doctorImg from "@/assets/doctor-portrait.jpg";
 import { Award, GraduationCap, Users } from "lucide-react";
 
 const DoctorSection = () => (
@@ -8,8 +7,8 @@ const DoctorSection = () => (
         <div className="relative">
           <div className="rounded-2xl overflow-hidden shadow-glow">
             <img
-              src={doctorImg}
-              alt="Dr. Alex Mitchell — Lead Dentist"
+              src="/doctor-portrait.jpg"
+              alt="Dr. Arpit Shah — Lead Dentist"
               className="w-full h-auto object-cover"
               loading="lazy"
               width={800}
@@ -25,18 +24,18 @@ const DoctorSection = () => (
         <div>
           <span className="text-sm font-body font-semibold text-accent tracking-widest uppercase mb-3 block">Meet Your Dentist</span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-            Dr. Alex Mitchell
+            Dr. Arpit Shah
           </h2>
           <p className="text-white font-body text-lg mb-8 leading-relaxed">
             With over 15 years of experience and advanced training in cosmetic and implant
-            dentistry, Dr. Mitchell combines clinical precision with genuine compassion
+             Dr. Shah combines clinical precision with genuine compassion
             to deliver exceptional results for every patient.
           </p>
 
           <div className="space-y-4">
             {[
-              { icon: GraduationCap, text: "Harvard School of Dental Medicine" },
-              { icon: Award, text: "Board Certified — American Board of Prosthodontics" },
+              { icon: GraduationCap, text: "Government Dental College & Hospital, Ahmedabad" },
+              { icon: Award, text: "University Gold Medalist — Orthodontics Specialist" },
               { icon: Users, text: "10,000+ Successful Procedures" },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-3">

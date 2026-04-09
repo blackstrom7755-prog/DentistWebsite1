@@ -145,7 +145,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <label className="text-sm font-body font-bold text-navy mb-2 block">Phone *</label>
-                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 (234) 567-890" required type="tel" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+91 91234 56789" required type="tel" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-6">
@@ -274,10 +274,10 @@ const ContactSection = () => {
           <div className="md:col-span-2 space-y-8 flex flex-col justify-start pt-4 text-left">
             <div className="space-y-6">
               {[
-                { icon: MapPin, title: "Visit Us", lines: ["123 Smile Avenue", "New York, NY 10001"] },
+                { icon: MapPin, title: "Visit Us", lines: ["123 Smile Avenue", "Ahmedabad, Gujarat 380001"] },
                 { icon: Clock, title: "Hours", lines: ["Mon–Fri: 8 AM – 7 PM", "Sat: 9 AM – 3 PM", "Sun: Closed"] },
-                { icon: Phone, title: "Call Us", lines: ["+1 (234) 567-890"], isPhone: true },
-                { icon: Mail, title: "Email", lines: ["hello@dentcareplus.com"] },
+                { icon: Phone, title: "Call Us", lines: ["+91 91234 56789"], isPhone: true },
+                { icon: Mail, title: "Email", lines: ["hello@dentcareplus.in"] },
               ].map((item) => (
                 <div key={item.title} className="flex gap-5">
                   <div className="w-11 h-11 rounded-xl bg-[#e0f2f1] flex items-center justify-center shrink-0">
@@ -302,7 +302,7 @@ const ContactSection = () => {
               asChild
             >
               <a
-                href="https://wa.me/1234567890?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment"
+                href="https://wa.me/919123456789?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment"
                 target="_blank"
                 rel="noopener noreferrer"
               >

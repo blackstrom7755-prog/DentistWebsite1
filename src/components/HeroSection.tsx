@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
-import heroImg from "@/assets/hero-dentist.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src={heroImg}
+          src="/hero-dentist.jpg"
           alt="Modern dental clinic with friendly dentist"
           className="w-full h-full object-cover"
           width={1920}
@@ -30,9 +29,9 @@ const HeroSection = () => {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            Advanced Dental Excellence
+            #1 Rated Dentist in Ahmedabad:
             <br />
-            <span className="text-accent">in Ahmedabad.</span>
+            <span className="text-accent">Advanced Dental & Implant Center</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white font-body max-w-lg mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>

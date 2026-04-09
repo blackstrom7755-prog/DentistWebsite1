@@ -1,5 +1,3 @@
-import techScanner from "@/assets/tech-scanner.jpg";
-import techLaser from "@/assets/tech-laser.jpg";
 import { Scan, Zap, ShieldCheck, Cpu } from "lucide-react";
 
 const technologies = [
@@ -7,13 +5,13 @@ const technologies = [
     icon: Scan,
     title: "Digital 3D Scanning",
     desc: "Ultra-precise intraoral scanning replaces messy impressions — accurate to 20 microns.",
-    image: techScanner,
+    image: "/tech-scanner.jpg",
   },
   {
     icon: Zap,
     title: "Laser Dentistry",
     desc: "Minimally invasive soft-tissue laser for painless gum treatments and faster healing.",
-    image: techLaser,
+    image: "/tech-laser.jpg",
   },
   {
     icon: ShieldCheck,
