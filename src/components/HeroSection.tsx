@@ -3,23 +3,29 @@ import { ArrowRight, Star } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:bg-none">
-      <div className="absolute inset-0 dark:block hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent">
+      {/* 1. Light Mode Background */}
+      <div className="absolute inset-0 dark:hidden z-0">
         <img
-          src="/hero-dentist.jpg"
-          alt="Modern dental clinic with friendly dentist"
+          src="/hero-bg-light.png"
+          alt="Premium Dental Clinic"
           className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
         />
-        <div className="absolute inset-0 gradient-hero opacity-80" />
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-[4px]" />
       </div>
 
-      {/* Light mode overlay */}
-      <div className="absolute inset-0 dark:hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-mint-deep/10 to-primary/10 opacity-60" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-mint-deep/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+      {/* 2. Dark Mode Background - Optimized for Visibility */}
+      <div className="absolute inset-0 hidden dark:block z-0">
+        <img
+          src="/hero-bg-light.png"
+          alt="Premium Dental Clinic"
+          className="w-full h-full object-cover brightness-[0.45] contrast-[1.1] saturate-[0.9]"
+        />
+        {/* Adjusted overlay: Lower opacity (50%) to let the image show through more */}
+        <div className="absolute inset-0 bg-zinc-950/50 backdrop-blur-[5px]" />
+        
+        {/* Bottom gradient to ensure the stats and lower text stay readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
       </div>
 
       <div className="relative container mx-auto px-4 pt-24 pb-16">
@@ -36,7 +42,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 opacity-0 animate-fade-up text-navy dark:text-white" style={{ animationDelay: "0.3s" }}>
-            <span className="text-mint-deep dark:text-accent">Advanced Dental Excellence in Ahmedabad.</span>
+            <span className="text-6xl md:text-8xl font-bold leading-tight mb-6 text-navy dark:text-mint/100">Advanced Dental Excellence in Ahmedabad.</span>
           </h1>
 
           <p className="text-lg md:text-xl font-body max-w-lg mb-8 opacity-0 animate-fade-up text-navy/80 dark:text-white" style={{ animationDelay: "0.5s" }}>
@@ -44,7 +50,11 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.7s" }}>
-            <Button size="lg" className="bg-mint-deep hover:bg-mint-deep/90 text-white dark:bg-accent/80 dark:hover:bg-accent/90 text-base px-8 py-6 shadow-md dark:shadow-glow border border-transparent dark:border-accent/30" asChild>
+            <Button 
+              size="lg" 
+              className="bg-mint-deep hover:bg-mint-deep/90 text-black dark:text-white dark:bg-accent/80 dark:hover:bg-accent/90 text-base px-8 py-6 shadow-md dark:shadow-glow border border-transparent dark:border-accent/30" 
+              asChild
+            >
               <a href="#contact">
                 Book Appointment <ArrowRight className="ml-2 w-5 h-5" />
               </a>
@@ -61,8 +71,13 @@ const HeroSection = () => {
               { num: "25+", label: "Award-Winning" },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-2xl md:text-3xl font-display font-bold text-mint-deep dark:text-accent">{s.num}</div>
-                <div className="text-xs md:text-sm text-navy/70 dark:text-white font-body font-medium">{s.label}</div>
+                {/* Using a hard-coded color to ensure it changes */}
+                <div className="text-2xl md:text-3xl font-display font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                  {s.num}
+                </div>
+                <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-body font-medium">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
@@ -71,7 +86,11 @@ const HeroSection = () => {
 
       {/* Floating book button on mobile */}
       <div className="fixed bottom-6 right-6 z-40 lg:hidden">
-        <Button size="lg" className="bg-mint-deep hover:bg-mint-deep/90 text-white dark:bg-accent dark:text-accent-foreground shadow-lg dark:shadow-glow rounded-full px-6 py-6" asChild>
+        <Button 
+          size="lg" 
+          className="bg-mint-deep hover:bg-mint-deep/90 text-black dark:text-accent-foreground dark:bg-accent shadow-lg dark:shadow-glow rounded-full px-6 py-6" 
+          asChild
+        >
           <a href="#contact">Book Now</a>
         </Button>
       </div>
