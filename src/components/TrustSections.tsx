@@ -20,7 +20,7 @@ const testimonials = [
 
 const TrustSections = () => {
   return (
-    <div className="space-y-24 py-20 pb-28 bg-[#0a0f16]">
+    <div className="space-y-24 py-20 pb-28 bg-white dark:bg-[#0a0f16]">
       {/* ── Meet the Doctor ── */}
       <section id="doctor" className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -48,13 +48,13 @@ const TrustSections = () => {
           {/* Doctor Bio */}
           <div className="space-y-8">
             <div>
-              <span className="text-sm font-body font-semibold text-[hsl(168,80%,65%)] tracking-widest uppercase mb-4 block">
+              <span className="text-sm font-body font-semibold text-mint-deep dark:text-[hsl(168,80%,65%)] tracking-widest uppercase mb-4 block">
                 The Expert Behind Your Smile
               </span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
-                Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Dr. Arpit Shah</span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-navy dark:text-white mb-6">
+                Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-navy to-navy/60 dark:from-white dark:to-white/60">Dr. Arpit Shah</span>
               </h2>
-              <p className="text-white/70 font-body text-lg leading-relaxed max-w-xl">
+              <p className="text-navy/70 dark:text-white/70 font-body text-lg leading-relaxed max-w-xl">
                 With a passion for creating perfect smiles and over 15 years of clinical excellence, Dr. Arpit Shah is a renowned name in orthodontic and cosmetic dentistry. He combines advanced global technologies with a gentle, patient-first approach.
               </p>
             </div>
@@ -65,13 +65,13 @@ const TrustSections = () => {
                 { icon: Award, title: "University Gold Medalist", desc: "Recognized for Academic Excellence" },
                 { icon: Users, title: "15+ Years Experience", desc: "Treated over 10,000+ happy patients" },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-[hsl(168,80%,65%,0.1)] flex items-center justify-center shrink-0">
-                    <item.icon className="w-5 h-5 text-[hsl(168,80%,65%)]" />
+                <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-navy/5 dark:bg-white/5 border border-navy/10 dark:border-white/10 hover:bg-navy/10 dark:hover:bg-white/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-mint-deep/10 dark:bg-[hsl(168,80%,65%,0.1)] flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-mint-deep dark:text-[hsl(168,80%,65%)]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-sm">{item.title}</h4>
-                    <p className="text-white/40 text-xs">{item.desc}</p>
+                    <h4 className="font-bold text-navy dark:text-white text-sm">{item.title}</h4>
+                    <p className="text-navy/40 dark:text-white/40 text-xs">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -83,18 +83,18 @@ const TrustSections = () => {
       {/* ── Patient Testimonials ── */}
       <section id="reviews" className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm font-body font-semibold text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
+          <span className="text-sm font-body font-semibold text-mint-deep dark:text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
             Testimonials
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
-            What Our Patients <span className="text-white/40 italic font-light">Say</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-navy dark:text-white">
+            What Our Patients <span className="text-navy/40 dark:text-white/40 italic font-light">Say</span>
           </h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((t, index) => (
             <div key={index} className="trust-card rounded-2xl p-8 flex flex-col group">
-              <Quote className="w-10 h-10 text-[hsl(168,80%,65%)] opacity-20 mb-6 group-hover:opacity-40 transition-opacity" />
+              <Quote className="w-10 h-10 text-mint-deep dark:text-[hsl(168,80%,65%)] opacity-20 mb-6 group-hover:opacity-40 transition-opacity" />
               
               {/* Star Rating */}
               <div className="flex gap-0.5 mb-6">

@@ -41,27 +41,27 @@ const testimonials = [
 
 const PatientTestimonials = () => {
   return (
-    <section id="patient-stories" className="relative py-20 md:py-28 overflow-hidden">
+    <section id="patient-stories" className="relative py-20 md:py-28 overflow-hidden bg-white dark:bg-[#0a0a0a]">
       {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,80%,6%)] via-[hsl(210,60%,10%)] to-[hsl(220,50%,8%)]" />
+      <div className="absolute inset-0 dark:block hidden bg-gradient-to-br from-[hsl(210,80%,6%)] via-[hsl(210,60%,10%)] to-[hsl(220,50%,8%)]" />
 
       {/* Subtle ambient orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[hsl(168,80%,50%)] opacity-[0.04] blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[hsl(210,80%,45%)] opacity-[0.05] blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[hsl(168,80%,50%)] opacity-[0.04] dark:opacity-[0.04] blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[hsl(210,80%,45%)] opacity-[0.05] dark:opacity-[0.05] blur-[100px] pointer-events-none" />
 
       <div className="relative container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-body font-semibold text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
+          <span className="text-sm font-body font-semibold text-mint-deep dark:text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
             Patient Stories
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-navy dark:text-white mb-4">
             Real Smiles, Real{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(168,80%,70%)] to-[hsl(168,60%,55%)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-mint-deep to-mint-deep/70 dark:from-[hsl(168,80%,70%)] dark:to-[hsl(168,60%,55%)]">
               Results
             </span>
           </h2>
-          <p className="text-white/50 font-body text-base md:text-lg max-w-lg mx-auto">
+          <p className="text-navy/50 dark:text-white/50 font-body text-base md:text-lg max-w-lg mx-auto">
             Don't just take our word for it — hear from patients who trust us
             with their smiles every day.
           </p>
