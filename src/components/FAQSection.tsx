@@ -36,7 +36,10 @@ const FAQSection = () => (
   <section id="faq" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-sm font-body font-bold text-mint-deep dark:text-accent tracking-widest uppercase mb-3 block">
+        <span 
+          style={{ color: '#0D9488' }} 
+          className="text-2xl md:text-2xl text-sm font-body font-bold tracking-widest uppercase mb-3 block"
+        >
           FAQ
         </span>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-navy dark:text-white mb-4">

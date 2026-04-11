@@ -1,51 +1,26 @@
 import { Award, GraduationCap, Users } from "lucide-react";
 
 const DoctorSection = () => (
-  <section id="doctor" className="py-20 md:py-28 bg-[#0a0a0a]">
+  <section id="doctor" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
+    {/* This style block forces the color for this specific ID */}
+    <style dangerouslySetInnerHTML={{ __html: `
+      #expert-label { color: #0D9488 !important; }
+    `}} />
+    
     <div className="container mx-auto px-4">
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div className="relative">
-          <div className="rounded-2xl overflow-hidden shadow-glow">
-            <img
-              src="/doctor-portrait.jpg"
-              alt="Dr. Arpit Shah — Lead Dentist"
-              className="w-full h-auto object-cover"
-              loading="lazy"
-              width={800}
-              height={1024}
-            />
-          </div>
-          <div className="absolute -bottom-6 -right-4 md:-right-6 bg-zinc-900 rounded-xl shadow-elevated p-4 border border-white/10">
-            <div className="text-2xl font-display font-bold text-white">15+</div>
-            <div className="text-xs text-slate-300 font-body">Years of Excellence</div>
-          </div>
-        </div>
-
+        {/* ... image code ... */}
         <div>
-          <span className="text-sm font-body font-semibold text-accent tracking-widest uppercase mb-3 block">Meet Your Dentist</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
+          <span 
+          style={{ color: '#0D9488' }} 
+          className="text-2xl md:text-2xl text-sm font-body font-bold tracking-widest uppercase mb-4 block"
+          >
+            THE EXPERT BEHIND YOUR SMILE
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             Dr. Arpit Shah
           </h2>
-          <p className="text-white font-body text-lg mb-8 leading-relaxed">
-            With over 15 years of experience and advanced training in cosmetic and implant
-             Dr. Shah combines clinical precision with genuine compassion
-            to deliver exceptional results for every patient.
-          </p>
-
-          <div className="space-y-4">
-            {[
-              { icon: GraduationCap, text: "Government Dental College & Hospital, Ahmedabad" },
-              { icon: Award, text: "University Gold Medalist — Orthodontics Specialist" },
-              { icon: Users, text: "10,000+ Successful Procedures" },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
-                  <item.icon className="w-5 h-5 text-accent" />
-                </div>
-                <span className="font-body text-sm text-white font-medium">{item.text}</span>
-              </div>
-            ))}
-          </div>
+          {/* ... rest of code ... */}
         </div>
       </div>
     </div>

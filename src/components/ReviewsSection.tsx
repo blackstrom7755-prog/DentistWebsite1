@@ -13,7 +13,12 @@ const ReviewsSection = () => (
   <section id="reviews" className="py-20 md:py-28 bg-background">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-sm font-body font-semibold text-accent-foreground/60 tracking-widest uppercase mb-3 block">Testimonials</span>
+        <span 
+          style={{ color: '#0D9488' }} 
+          className="text-2xl md:text-2xl text-sm font-body font-bold tracking-widest uppercase mb-3 block"
+        >
+          TESTIMONIAL
+        </span>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
           What Our Patients Say
         </h2>

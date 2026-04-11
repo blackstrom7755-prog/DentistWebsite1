@@ -48,7 +48,10 @@ const TrustSections = () => {
           {/* Doctor Bio */}
           <div className="space-y-8">
             <div>
-              <span className="text-sm font-body font-semibold text-mint-deep dark:text-[hsl(168,80%,65%)] tracking-widest uppercase mb-4 block">
+              <span 
+              style={{ color: '#0D9488' }} 
+              className="md:text-2xl text-sm font-body font-bold tracking-widest uppercase mb-4 block"
+              >
                 The Expert Behind Your Smile
               </span>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-navy dark:text-white mb-6">
@@ -67,7 +70,7 @@ const TrustSections = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-navy/5 dark:bg-white/5 border border-navy/10 dark:border-white/10 hover:bg-navy/10 dark:hover:bg-white/10 transition-colors">
                   <div className="w-10 h-10 rounded-lg bg-mint-deep/10 dark:bg-[hsl(168,80%,65%,0.1)] flex items-center justify-center shrink-0">
-                    <item.icon className="w-5 h-5 text-mint-deep dark:text-[hsl(168,80%,65%)]" />
+                    <item.icon className="w-5 h-5 text-mint-deep dark:text-[hsl(174, 84%, 31%)]" />
                   </div>
                   <div>
                     <h4 className="font-bold text-navy dark:text-white text-sm">{item.title}</h4>
@@ -83,7 +86,9 @@ const TrustSections = () => {
       {/* ── Patient Testimonials ── */}
       <section id="reviews" className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm font-body font-semibold text-mint-deep dark:text-[hsl(168,80%,65%)] tracking-widest uppercase mb-3 block">
+          <span style={{ color: '#0D9488' }} 
+            className="text-2xl md:text-2xl text-sm font-body font-bold tracking-widest uppercase mb-3 block"
+          > 
             Testimonials
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-navy dark:text-white">

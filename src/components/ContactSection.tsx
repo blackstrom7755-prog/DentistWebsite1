@@ -113,8 +113,10 @@ const ContactSection = () => {
     <section id="contact" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-body font-bold text-navy/40 dark:text-white/40 tracking-[0.2em] uppercase mb-4 block">
-            Appointment Booking
+          <span style={{ color: '#0D9488' }} 
+            className="font-display text-3xl md:text-2xl font-bold mb-6"
+          >
+            APPOINTMENT BOOKING
           </span>
           <h2 className="font-display text-5xl md:text-6xl font-bold text-navy dark:text-white mb-6 tracking-tight leading-none">
             Secure Your Slot
