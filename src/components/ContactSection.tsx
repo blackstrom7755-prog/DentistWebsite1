@@ -110,16 +110,16 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[#f0f9f8]">
+    <section id="contact" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-body font-bold text-navy/40 tracking-[0.2em] uppercase mb-4 block">
+          <span className="text-sm font-body font-bold text-navy/40 dark:text-white/40 tracking-[0.2em] uppercase mb-4 block">
             Appointment Booking
           </span>
-          <h2 className="font-display text-5xl md:text-6xl font-bold text-navy mb-6 tracking-tight leading-none">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-navy dark:text-white mb-6 tracking-tight leading-none">
             Secure Your Slot
           </h2>
-          <p className="text-navy/60 font-body text-lg md:text-xl leading-relaxed mb-4 max-w-xl mx-auto">
+          <p className="text-navy/60 dark:text-white/70 font-body text-lg md:text-xl leading-relaxed mb-4 max-w-xl mx-auto">
             Experience Dentistry 2.0. Our real-time system ensures you get the exact time you need with zero waiting.
           </p>
           <div className="flex justify-center mt-8">
@@ -128,35 +128,35 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-5 gap-12 max-w-6xl mx-auto text-left">
-          <div className="md:col-span-3 bg-white rounded-[2rem] shadow-xl p-8 md:p-10 border border-white/20 text-left">
+          <div className="md:col-span-3 bg-slate-50 dark:bg-zinc-900/50 rounded-[2rem] shadow-xl p-8 md:p-10 border border-navy/10 dark:border-white/10 text-left">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Patient Info */}
-              <div className="p-6 rounded-2xl bg-[#f4fbf9]/50 border border-[#f4fbf9] space-y-6">
-                <h3 className="font-display font-bold text-navy text-lg flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
-                    <span className="text-accent text-sm">1</span>
+              <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-navy/5 dark:border-white/10 space-y-6">
+                <h3 className="font-display font-bold text-navy dark:text-white text-lg flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-mint-deep/20 dark:bg-accent/20 flex items-center justify-center">
+                    <span className="text-mint-deep dark:text-accent text-sm">1</span>
                   </div>
                   Personal Details
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="text-sm font-body font-bold text-navy mb-2 block">Full Name *</label>
-                    <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                    <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Full Name *</label>
+                    <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Doe" required className="bg-slate-100 dark:bg-zinc-800 border-none h-12 rounded-xl focus-visible:ring-mint-deep dark:focus-visible:ring-accent text-navy dark:text-white placeholder:text-navy/40 dark:placeholder:text-white/40" />
                   </div>
                   <div>
-                    <label className="text-sm font-body font-bold text-navy mb-2 block">Phone *</label>
-                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+91 91234 56789" required type="tel" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                    <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Phone *</label>
+                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+91 91234 56789" required type="tel" className="bg-slate-100 dark:bg-zinc-800 border-none h-12 rounded-xl focus-visible:ring-mint-deep dark:focus-visible:ring-accent text-navy dark:text-white placeholder:text-navy/40 dark:placeholder:text-white/40" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="text-sm font-body font-bold text-navy mb-2 block">Email Address</label>
-                    <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" type="email" className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy" />
+                    <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Email Address</label>
+                    <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" type="email" className="bg-slate-100 dark:bg-zinc-800 border-none h-12 rounded-xl focus-visible:ring-mint-deep dark:focus-visible:ring-accent text-navy dark:text-white placeholder:text-navy/40 dark:placeholder:text-white/40" />
                   </div>
                   <div>
-                    <label className="text-sm font-body font-bold text-navy mb-2 block">Service Category</label>
+                    <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Service Category</label>
                     <Select value={form.serviceType} onValueChange={(v) => setForm({ ...form, serviceType: v })}>
-                      <SelectTrigger className="bg-[#f4fbf9] border-none h-12 rounded-xl focus:ring-accent text-navy">
+                      <SelectTrigger className="bg-slate-100 dark:bg-zinc-800 border-none h-12 rounded-xl focus:ring-mint-deep dark:focus:ring-accent text-navy dark:text-white">
                         <SelectValue placeholder="What do you need?" />
                       </SelectTrigger>
                       <SelectContent>
@@ -169,10 +169,10 @@ const ContactSection = () => {
                 </div>
               </div>
               {/* Date & Time Selection */}
-              <div className="p-6 rounded-2xl bg-[#f4fbf9]/50 border border-[#f4fbf9] space-y-6">
-                <h3 className="font-display font-bold text-navy text-lg flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
-                    <span className="text-accent text-sm">2</span>
+              <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-navy/5 dark:border-white/10 space-y-6">
+                <h3 className="font-display font-bold text-navy dark:text-white text-lg flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-mint-deep/20 dark:bg-accent/20 flex items-center justify-center">
+                    <span className="text-mint-deep dark:text-accent text-sm">2</span>
                   </div>
                   Select Schedule
                 </h3>
