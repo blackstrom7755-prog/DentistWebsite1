@@ -11,45 +11,26 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check if user has a saved preference
+    // 1. Check if user has a saved preference in their browser
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("app-theme");
       if (saved) {
         return (saved as Theme);
       }
-      
-      // Check system preference on first visit
-      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
     }
     
-    return "dark"; // Fallback to dark as per project vibe
+    // 2. Default to light mode for all new visitors to match the brand
+    return "light"; 
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
+    // Apply the theme class to the <html> tag for Tailwind dark: modifiers
     root.classList.remove("light", "dark");
     root.classList.add(theme);
+    // Save the preference so the user doesn't have to toggle it again
     localStorage.setItem("app-theme", theme);
   }, [theme]);
-
-  // Listen for system preference changes
-  useEffect(() => {
-    if (!window.matchMedia) return;
-    
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-switch if user hasn't set a preference
-      const saved = localStorage.getItem("app-theme");
-      if (!saved) {
-        setTheme(e.matches ? "dark" : "light");
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
