@@ -111,15 +111,16 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-24 bg-white dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#0D9488] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">
-            Expertise & Care
+        {/* Header Section */}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <span className="text-4xl md:text-2xl text-[#0D9488] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">
+            Our Services
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-6 font-display">
-            Specialized Dental Services
+            Comprehensive Dental Care
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-lg">
-            Providing Ahmedabad with advanced dental solutions backed by clinical precision and modern technology.
+            We offer a wide range of dental services to help you achieve a healthy, beautiful smile.
           </p>
         </div>
 
@@ -165,7 +166,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* THE READ MORE MODAL */}
+      {/* 4. The "Read More" Modal System */}
       <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
         <DialogContent className="max-w-2xl bg-white dark:bg-[#0d0d0d] border-[#0D9488]/20 shadow-2xl p-0 overflow-hidden">
           {selectedService && (
@@ -179,7 +180,7 @@ const ServicesSection = () => {
                 </DialogHeader>
               </div>
 
-              <div className="p-8 space-y-8">
+              <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto">
                 <div>
                   <h4 className="text-[#0D9488] font-bold text-xs uppercase tracking-[0.2em] mb-3">Service Description</h4>
                   <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
@@ -208,10 +209,15 @@ const ServicesSection = () => {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 dark:border-white/5">
-                  <button className="w-full bg-[#0D9488] hover:bg-[#0b7a6f] text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#0D9488]/20 flex items-center justify-center gap-2">
+                  {/* Functional Link Button */}
+                  <a 
+                    href="#contact" 
+                    onClick={() => setSelectedService(null)} // Closes modal before scrolling
+                    className="w-full bg-[#0D9488] hover:bg-[#0b7a6f] text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#0D9488]/20 flex items-center justify-center gap-2"
+                  >
                     <HeartPulse className="w-5 h-5" />
-                    Book Free Consultation
-                  </button>
+                    Book Appointment
+                  </a>
                 </div>
               </div>
             </div>
