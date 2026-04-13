@@ -12,7 +12,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center sm:object-right md:object-center"
         />
         {/* Increased opacity for mobile readability */}
-        <div className="absolute inset-0 bg-white/80 md:bg-white/60 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-white/40 md:bg-white/40 backdrop-blur-[1px]" />
       </div>
 
       {/* 2. Dark Mode Background */}
@@ -23,7 +23,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center sm:object-right md:object-center brightness-[0.4] contrast-[1.1]"
         />
         {/* Solid overlay for mobile, slight blur for desktop */}
-        <div className="absolute inset-0 bg-zinc-950/80 md:bg-zinc-950/60 backdrop-blur-[3px]" />
+        <div className="absolute inset-0 bg-zinc-950/40 md:bg-zinc-950/40 backdrop-blur-[1px]" />
         
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
       </div>
