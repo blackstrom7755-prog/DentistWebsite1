@@ -4,27 +4,28 @@ import { ArrowRight, Star } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent">
-      {/* 1. Light Mode Background */}
+      {/* 1. Light Mode Background - Using Clinical Texture */}
       <div className="absolute inset-0 dark:hidden z-0">
         <img
-          src="/hero-bg-light.png"
-          alt="Premium Dental Clinic"
+          src="/clinical-bg.png"
+          alt="Advanced Dental Clinic Ahmedabad"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[4px]" />
+        {/* Lighter overlay to let the clinical texture show through */}
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
       </div>
 
-      {/* 2. Dark Mode Background - Optimized for Visibility */}
+      {/* 2. Dark Mode Background - Optimized for Clinical Feel */}
       <div className="absolute inset-0 hidden dark:block z-0">
         <img
-          src="/hero-bg-light.png"
-          alt="Premium Dental Clinic"
-          className="w-full h-full object-cover brightness-[0.45] contrast-[1.1] saturate-[0.9]"
+          src="/clinical-bg.png"
+          alt="Advanced Dental Clinic Ahmedabad"
+          className="w-full h-full object-cover brightness-[0.3] contrast-[1.2]"
         />
-        {/* Adjusted overlay: Lower opacity (50%) to let the image show through more */}
-        <div className="absolute inset-0 bg-zinc-950/50 backdrop-blur-[5px]" />
+        {/* Dark overlay with less blur to keep it looking "techy" and professional */}
+        <div className="absolute inset-0 bg-zinc-950/70 backdrop-blur-[3px]" />
         
-        {/* Bottom gradient to ensure the stats and lower text stay readable */}
+        {/* Bottom gradient fade */}
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
       </div>
 
@@ -33,37 +34,40 @@ const HeroSection = () => {
           <div className="flex items-center gap-2 mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                <Star key={i} className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
               ))}
             </div>
             <span className="text-sm font-body font-medium text-navy dark:text-white">
-              Rated 4.9/5 from 500+ patients
+              Rated 4.9/5 from 500+ patients in Ahmedabad
             </span>
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 opacity-0 animate-fade-up text-navy dark:text-white" style={{ animationDelay: "0.3s" }}>
-            <span className="text-6xl md:text-8xl font-bold leading-tight mb-6 text-navy dark:text-mint/100">Advanced Dental Excellence in Ahmedabad.</span>
+            <span className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-navy dark:text-[#2DD4BF]">
+              Advanced Dental Excellence.
+            </span>
           </h1>
 
-          <p className="text-lg md:text-xl font-body max-w-lg mb-8 opacity-0 animate-fade-up text-navy/80 dark:text-white" style={{ animationDelay: "0.5s" }}>
+          <p className="text-lg md:text-xl font-body max-w-lg mb-8 opacity-0 animate-fade-up text-navy/80 dark:text-white/90" style={{ animationDelay: "0.5s" }}>
             Experience world-class dental implants and aesthetic smile makeovers with Ahmedabad's most trusted specialists. Precision care designed for your perfect smile.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.7s" }}>
             <Button 
               size="lg" 
-              className="bg-mint-deep hover:bg-mint-deep/90 text-black dark:text-white dark:bg-accent/80 dark:hover:bg-accent/90 text-base px-8 py-6 shadow-md dark:shadow-glow border border-transparent dark:border-accent/30" 
+              className="bg-[#0D9488] hover:bg-[#0D9488]/90 text-white shadow-md dark:shadow-glow border border-transparent" 
               asChild
             >
               <a href="#contact">
                 Book Appointment <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-navy/30 text-navy dark:border-white/20 dark:text-white bg-navy/5 dark:bg-white/5 hover:bg-navy/10 dark:hover:bg-white/15 text-base px-8 py-6" asChild>
+            <Button size="lg" variant="outline" className="border-[#0D9488]/30 text-[#0D9488] dark:border-white/20 dark:text-white bg-transparent hover:bg-[#0D9488]/10 transition-all text-base px-8 py-6" asChild>
               <a href="#services">Explore Services</a>
             </Button>
           </div>
 
+          {/* Experience Stats */}
           <div className="mt-12 flex items-center gap-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.9s" }}>
             {[
               { num: "15+", label: "Years Experience" },
@@ -71,7 +75,6 @@ const HeroSection = () => {
               { num: "25+", label: "Award-Winning" },
             ].map((s) => (
               <div key={s.label}>
-                {/* Using a hard-coded color to ensure it changes */}
                 <div className="text-2xl md:text-3xl font-display font-bold text-[#0D9488] dark:text-[#2DD4BF]">
                   {s.num}
                 </div>
@@ -88,7 +91,7 @@ const HeroSection = () => {
       <div className="fixed bottom-6 right-6 z-40 lg:hidden">
         <Button 
           size="lg" 
-          className="bg-mint-deep hover:bg-mint-deep/90 text-black dark:text-accent-foreground dark:bg-accent shadow-lg dark:shadow-glow rounded-full px-6 py-6" 
+          className="bg-[#0D9488] hover:bg-[#0D9488]/90 text-white shadow-lg rounded-full px-6 py-6" 
           asChild
         >
           <a href="#contact">Book Now</a>
