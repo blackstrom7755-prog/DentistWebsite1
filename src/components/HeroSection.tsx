@@ -4,30 +4,29 @@ import { ArrowRight, Star } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent">
-      {/* 1. Light Mode Background - Using Clinical Texture */}
-      <div className="absolute inset-0 dark:hidden z-0">
-        <img
-          src="/clinical-bg.png"
-          alt="Advanced Dental Clinic Ahmedabad"
-          className="w-full h-full object-cover"
-        />
-        {/* Lighter overlay to let the clinical texture show through */}
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
-      </div>
+      {/* 1. Light Mode Background */}
+<div className="absolute inset-0 dark:hidden z-0 bg-white">
+  <img
+    src="/clinical-hero.png" // Ensure this matches your public folder filename
+    alt="Premium Dental Clinic"
+    className="w-full h-full object-cover object-center sm:object-right md:object-center"
+  />
+  {/* Increased opacity for mobile readability */}
+  <div className="absolute inset-0 bg-white/80 md:bg-white/60 backdrop-blur-[2px]" />
+</div>
 
-      {/* 2. Dark Mode Background - Optimized for Clinical Feel */}
-      <div className="absolute inset-0 hidden dark:block z-0">
-        <img
-          src="/clinical-bg.png"
-          alt="Advanced Dental Clinic Ahmedabad"
-          className="w-full h-full object-cover brightness-[0.3] contrast-[1.2]"
-        />
-        {/* Dark overlay with less blur to keep it looking "techy" and professional */}
-        <div className="absolute inset-0 bg-zinc-950/70 backdrop-blur-[3px]" />
-        
-        {/* Bottom gradient fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
-      </div>
+{/* 2. Dark Mode Background */}
+<div className="absolute inset-0 hidden dark:block z-0 bg-[#0a0a0a]">
+  <img
+    src="/clinical-hero.png"
+    alt="Premium Dental Clinic"
+    className="w-full h-full object-cover object-center sm:object-right md:object-center brightness-[0.4] contrast-[1.1]"
+  />
+  {/* Solid overlay for mobile, slight blur for desktop */}
+  <div className="absolute inset-0 bg-zinc-950/80 md:bg-zinc-950/60 backdrop-blur-[3px]" />
+  
+  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+</div>
 
       <div className="relative container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-2xl">
