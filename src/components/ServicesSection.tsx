@@ -141,7 +141,7 @@ const ServicesSection = () => {
               
               {/* Branded Overlay (dims the image for readability) */}
               {service.bgImage && (
-                <div className="absolute inset-0 bg-white/50 dark:bg-zinc-950/50 z-10" />
+                <div className="absolute inset-0 bg-white/10 dark:bg-zinc-950/10 z-10" />
               )}
 
               {/* Content Container - Ensure z-20 so it sits above image/overlay */}
