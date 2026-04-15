@@ -99,14 +99,14 @@ const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="services" className="py-24 bg-white dark:bg-[#0a0a0a]">
+    <section id="services" className="py-24 bg-white dark:bg-[#0a0f16]">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <span className="text-[#0D9488] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">
             Our Services
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-6 font-display">
-            Comprehensive Dental Care
+            Treatments At DentCare+
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-lg">
             We offer a wide range of dental services to help you achieve a healthy, beautiful smile.

@@ -17,18 +17,18 @@ const technologies = [
     icon: ShieldCheck,
     title: "AI Diagnostics",
     desc: "Artificial-intelligence powered X-ray analysis for early cavity and disease detection.",
-    image: null,
+    image: "/images.jpeg",
   },
   {
     icon: Cpu,
     title: "CAD/CAM Same-Day Crowns",
     desc: "Computer-designed crowns milled in-house — get a perfect crown in a single visit.",
-    image: null,
+    image: "/6549c0f119f7944682ccef2b_AdobeStock_284783995 (1) (1) (1).jpeg",
   },
 ];
 
 const TechnologyGrid = () => (
-  <section id="technology" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
+  <section id="technology" className="py-20 md:py-28 bg-white dark:bg-[#0a0f16]">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16">
         <span style={{ color: '#0D9488' }} 

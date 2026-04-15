@@ -110,7 +110,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
+    <section id="contact" className="py-20 md:py-28 bg-white dark:bg-[#0a0f16]">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto mb-16">
           <span style={{ color: '#0D9488' }} 
@@ -286,12 +286,12 @@ const ContactSection = () => {
                     <item.icon className="w-5 h-5 text-[#00695c]" />
                   </div>
                   <div>
-                    <div className="font-body font-bold text-base text-navy mb-1">{item.title}</div>
+                    <div className="font-body font-bold text-base text-navy dark:text-white mb-1">{item.title}</div>
                     {item.lines.map((l) =>
                       (item as any).isPhone ? (
-                        <a key={l} href={`tel:${l.replace(/[^+\d]/g, "")}`} className="block text-sm text-navy/60 font-body hover:text-navy transition-colors">{l}</a>
+                        <a key={l} href={`tel:${l.replace(/[^+\d]/g, "")}`} className="block text-sm text-navy/60 font-body hover:text-navy transition-colors dark:text-white">{l}</a>
                       ) : (
-                        <div key={l} className="text-sm text-navy/60 font-body">{l}</div>
+                        <div key={l} className="text-sm text-navy/60 font-body dark:text-white">{l}</div>
                       )
                     )}
                   </div>

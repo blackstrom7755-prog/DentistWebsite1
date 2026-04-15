@@ -7,7 +7,7 @@ const HeroSection = () => {
       {/* 1. Light Mode Background */}
       <div className="absolute inset-0 dark:hidden z-0 bg-white">
         <img
-          src="/clinical-hero.png" // Ensure this matches your public folder filename
+          src="/social-media-post-website-banner-dental-clinic_1151123-57727.jpg.avif" // Ensure this matches your public folder filename
           alt="Premium Dental Clinic"
           className="w-full h-full object-cover object-center sm:object-right md:object-center"
         />
@@ -16,16 +16,16 @@ const HeroSection = () => {
       </div>
 
       {/* 2. Dark Mode Background */}
-      <div className="absolute inset-0 hidden dark:block z-0 bg-[#0a0a0a]">
+      <div className="absolute inset-0 hidden dark:block z-0 bg-[#0a0f16]">
         <img
-          src="/clinical-hero.png"
+          src="/social-media-post-website-banner-dental-clinic_1151123-57727.jpg.avif"
           alt="Premium Dental Clinic"
           className="w-full h-full object-cover object-center sm:object-right md:object-center brightness-[0.4] contrast-[1.1]"
         />
         {/* Solid overlay for mobile, slight blur for desktop */}
         <div className="absolute inset-0 bg-zinc-950/40 md:bg-zinc-950/40 backdrop-blur-[1px]" />
         
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f16] via-transparent to-transparent" />
       </div>
 
       <div className="relative container mx-auto px-4 pt-24 pb-16">
@@ -43,7 +43,7 @@ const HeroSection = () => {
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 opacity-0 animate-fade-up text-navy dark:text-white" style={{ animationDelay: "0.3s" }}>
             <span className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-navy dark:text-[#2DD4BF]">
-              Advanced Dental Excellence.
+              Most Trusted Dental Clinic in Ahmedabad
             </span>
           </h1>
 

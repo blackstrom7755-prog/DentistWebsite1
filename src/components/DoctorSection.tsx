@@ -1,7 +1,7 @@
 import { Award, GraduationCap, Users } from "lucide-react";
 
 const DoctorSection = () => (
-  <section id="doctor" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
+  <section id="doctor" className="py-20 md:py-28 bg-white dark:bg-[#0a0f16]">
     {/* This style block forces the color for this specific ID */}
     <style dangerouslySetInnerHTML={{ __html: `
       #expert-label { color: #0D9488 !important; }

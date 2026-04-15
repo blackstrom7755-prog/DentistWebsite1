@@ -41,7 +41,7 @@ const testimonials = [
 
 const PatientTestimonials = () => {
   return (
-    <section id="patient-stories" className="relative py-20 md:py-28 overflow-hidden bg-white dark:bg-[#0a0a0a]">
+    <section id="patient-stories" className="relative py-20 md:py-28 overflow-hidden bg-white dark:bg-[#0a0f16]">
       {/* Dark gradient background */}
       <div className="absolute inset-0 dark:block hidden bg-gradient-to-br from-[hsl(210,80%,6%)] via-[hsl(210,60%,10%)] to-[hsl(220,50%,8%)]" />
 

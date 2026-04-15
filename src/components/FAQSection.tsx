@@ -33,7 +33,7 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section id="faq" className="py-20 md:py-28 bg-white dark:bg-[#0a0a0a]">
+  <section id="faq" className="py-20 md:py-28 bg-white dark:bg-[#0a0f16]">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16">
         <span 
