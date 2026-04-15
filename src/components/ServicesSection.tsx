@@ -19,12 +19,10 @@ import {
   ShieldAlert
 } from "lucide-react";
 
-// Update service type definition
 type Service = {
   title: string;
-  shortDesc: string;
   icon: JSX.Element;
-  bgImage?: string; // Optional background image
+  bgImage?: string; 
   fullDescription: string;
   benefits: string[];
   procedure: string;
@@ -33,25 +31,22 @@ type Service = {
 const services: Service[] = [
   {
     title: "Teeth Whitening",
-    shortDesc: "Professional laser whitening for a radiant, confident smile.",
     icon: <Sparkles className="w-8 h-8" />,
-    bgImage: "/whitening-bg.jpg", // New Background image from image_2.png
+    bgImage: "/whitening-bg.jpg",
     fullDescription: "Our clinical whitening system uses proprietary laser technology to break down deep-seated stains safely. We ensure zero sensitivity and immediate results.",
     benefits: ["Results in 60 minutes", "Up to 8 shades lighter", "Enamel-safe professional gel", "Long-lasting brightness"],
     procedure: "We apply a specialized peroxide gel activated by blue light to accelerate whitening safely."
   },
   {
     title: "Invisible Braces",
-    shortDesc: "Straighten your teeth discreetly with modern clear aligners.",
     icon: <Smile className="w-8 h-8" />,
-    bgImage: "/aligner-bg.jpg", // New Background image from image_1.png
+    bgImage: "/aligner-bg.jpg",
     fullDescription: "Align your teeth comfortably and virtually invisibly using custom-designed clear aligners created from advanced 3D scanning technology.",
     benefits: ["Removable for eating & brushing", "Virtually invisible appearance", "Fewer office visits required", "Smooth comfort"],
     procedure: "We conduct an intraoral scan to create a 3D model and print custom alignment trays."
   },
   {
     title: "Dental Implants",
-    shortDesc: "The gold standard for permanent, natural tooth replacement.",
     icon: <Shield className="w-8 h-8" />,
     bgImage: "shutterstock_567400411.jpg.webp",
     fullDescription: "Replace missing teeth with medical-grade titanium implants that acting as artificial roots, fusing with your jawbone.",
@@ -60,7 +55,6 @@ const services: Service[] = [
   },
   {
     title: "Painless Root Canal",
-    shortDesc: "Save your natural teeth with advanced, comfort-first therapy.",
     icon: <Activity className="w-8 h-8" />,
     bgImage: "/root-canal-treatment.jpg",
     fullDescription: "Using rotary endodontic technology, we complete root canals faster and with significantly less discomfort, preserving your natural tooth.",
@@ -69,7 +63,6 @@ const services: Service[] = [
   },
   {
     title: "Composite Bonding",
-    shortDesc: "Repair chips and gaps instantly with tooth-colored resin.",
     icon: <Scaling className="w-8 h-8" />,
     bgImage: "/understand-dental-bonding.jpg",
     fullDescription: "A cosmetic procedure where tooth-colored resin is sculpted and bonded to the tooth to repair chips, cracks, or close gaps.",
@@ -78,7 +71,6 @@ const services: Service[] = [
   },
   {
     title: "Full Mouth Rehab",
-    shortDesc: "Comprehensive reconstruction for severe dental issues.",
     icon: <Stethoscope className="w-8 h-8" />,
     bgImage: "/what-is-full-mouth-rehabilitation.jpg",
     fullDescription: "A personalized treatment plan sequence designed to restore health, function, and aesthetics for the entire mouth.",
@@ -87,7 +79,6 @@ const services: Service[] = [
   },
   {
     title: "Pediatric Dentistry",
-    shortDesc: "Gentle and fun dental care specifically for children.",
     icon: <Baby className="w-8 h-8" />,
     bgImage: "/Pediatric-dentistry-1024x484.jpg",
     fullDescription: "Specialized care focused on pediatric needs, ensuring a positive, anxiety-free experience for lifelong oral health.",
@@ -96,7 +87,6 @@ const services: Service[] = [
   },
   {
     title: "Emergency Dental Care",
-    shortDesc: "Rapid response for toothaches, accidents, and dental trauma.",
     icon: <ShieldAlert className="w-8 h-8" />,
     bgImage: "/dental-emergency.jpg",
     fullDescription: "Urgent care priority scheduling for severe pain, dental trauma, knocked-out teeth, or broken restorations.",
@@ -111,9 +101,8 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-24 bg-white dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <span className="text-4xl md:text-2xl text-[#0D9488] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">
+          <span className="text-[#0D9488] font-bold tracking-[0.2em] uppercase text-sm mb-4 block">
             Our Services
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-navy dark:text-white mb-6 font-display">
@@ -124,41 +113,47 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        {/* Service Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group p-8 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden"
+              className="group flex flex-col h-fit rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/10 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
             >
-              {/* Specialized Background Image for Whitening and Aligners */}
-              {service.bgImage && (
-                <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 group-hover:blur-sm"
-                  style={{ backgroundImage: `url(${service.bgImage})` }}
-                />
-              )}
-              
-              {/* Branded Overlay (dims the image for readability) */}
-              {service.bgImage && (
-                <div className="absolute inset-0 bg-white/50 dark:bg-zinc-950/50 z-10" />
-              )}
+              {/* 1. Image Header */}
+              <div className="relative h-44 overflow-hidden">
+                {service.bgImage ? (
+                  <img 
+                    src={service.bgImage} 
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center text-[#0D9488]">
+                    {service.icon}
+                  </div>
+                )}
+              </div>
 
-              {/* Content Container - Ensure z-20 so it sits above image/overlay */}
-              <div className="relative z-20">
-                <div className="text-[#0D9488] mb-6 inline-block p-3 rounded-xl bg-[#0D9488]/10 group-hover:bg-[#0D9488] group-hover:text-white transition-colors">
-                  {service.icon}
+              {/* 2. Content Area - Tightened padding and spacing */}
+              <div className="p-5 flex flex-col space-y-2"> 
+                {/* Icon Accent */}
+                <div className="text-[#0D9488] inline-block p-2 rounded-lg bg-[#0D9488]/10 w-fit">
+                  <div className="w-5 h-5 flex items-center justify-center">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-navy dark:text-white">{service.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed line-clamp-2">
-                  {service.shortDesc}
-                </p>
+
+                {/* Service Name */}
+                <h3 className="text-lg font-bold text-navy dark:text-white leading-tight">
+                  {service.title}
+                </h3>
                 
+                {/* Read More Button - Bottom of the card */}
                 <button 
                   onClick={() => setSelectedService(service)}
-                  className="flex items-center gap-2 text-[#0D9488] font-bold text-sm uppercase tracking-wider hover:gap-4 transition-all"
+                  className="flex items-center gap-2 text-[#0D9488] font-bold text-[10px] uppercase tracking-widest hover:gap-4 transition-all pb-1"
                 >
-                  Read More <ArrowRight className="w-4 h-4" />
+                  Read More <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
@@ -166,7 +161,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* 4. The "Read More" Modal System */}
+      {/* Modal Section */}
       <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
         <DialogContent className="max-w-2xl bg-white dark:bg-[#0d0d0d] border-[#0D9488]/20 shadow-2xl p-0 overflow-hidden">
           {selectedService && (
@@ -209,10 +204,9 @@ const ServicesSection = () => {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 dark:border-white/5">
-                  {/* Functional Link Button */}
                   <a 
                     href="#contact" 
-                    onClick={() => setSelectedService(null)} // Closes modal before scrolling
+                    onClick={() => setSelectedService(null)}
                     className="w-full bg-[#0D9488] hover:bg-[#0b7a6f] text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#0D9488]/20 flex items-center justify-center gap-2"
                   >
                     <HeartPulse className="w-5 h-5" />
