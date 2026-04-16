@@ -73,13 +73,6 @@ const AdminDashboard = () => {
     navigate("/login", { replace: true });
   };
 
-  // ── Helper: format any Indian phone number to +91XXXXXXXXXX ────────────────
-  const formatPhoneIN = (raw: string): string => {
-    let digits = raw.replace(/\D/g, "");                  // strip non-digits
-    if (digits.startsWith("0")) digits = "91" + digits.slice(1); // 0XX → 91XX
-    if (digits.length === 10)   digits = "91" + digits;          // 10-digit → +91
-    return `+${digits}`;
-  };
 
   const handleConfirm = async (id: string, email: string | null) => {
     setProcessingAction({ id, type: "confirm" });
@@ -112,53 +105,7 @@ const AdminDashboard = () => {
     await fetchAppointments();
     setTimeout(() => setSuccessAction(null), 2000);
 
-    // ── Step 3: Trigger WhatsApp confirmation via Edge Function ───────────────
-    if (confirmedApt?.phone) {
-      try {
-        // Pre-format the phone number to +91 E.164 before sending
-        const formattedPhone = formatPhoneIN(confirmedApt.phone);
-
-        const waRes = await fetch(
-          "https://izbdbdjrcbhbepbyrgjk.supabase.co/functions/v1/send-whatsapp-confirmation",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY as string}`,
-            },
-            body: JSON.stringify({
-              patientName:     confirmedApt.patient_name,
-              phoneNumber:     formattedPhone,           // already +91XXXXXXXXXX
-              appointmentDate: confirmedApt.appointment_date,
-              appointmentTime: confirmedApt.appointment_time ?? undefined,
-            }),
-          }
-        );
-
-        if (waRes.ok) {
-          const waData = await waRes.json();
-          console.log("✅ WhatsApp sent. Twilio SID:", waData.message_sid);
-          // ── Combined success toast (as requested) ─────────────────────────
-          toast.success("✅ Database updated and WhatsApp notification triggered!");
-        } else {
-          const waErr = await waRes.json();
-          console.error("WhatsApp Edge Function error:", waErr);
-          // DB is committed — only the WhatsApp step failed
-          toast.warning(
-            `⚠️ Database updated but WhatsApp failed (${waErr?.error ?? "unknown error"}). Please notify the patient manually.`
-          );
-        }
-      } catch (waException) {
-        console.error("WhatsApp fetch threw an exception:", waException);
-        toast.warning(
-          "⚠️ Database updated but WhatsApp could not be reached. Check your network or Supabase function logs."
-        );
-      }
-    } else {
-      // No phone on record — DB is confirmed, just skip WhatsApp
-      toast.success("✅ Database updated! (No phone number — WhatsApp skipped.)");
-      console.info(`Appointment ${id} confirmed — no phone on record, skipping WhatsApp.`);
-    }
+    toast.success("✅ Database updated!");
   };
 
   const handleCancel = async (id: string, email: string | null) => {
@@ -346,38 +293,6 @@ const AdminDashboard = () => {
     return s !== "confirmed" && s !== "cancelled";
   };
 
-  // ── WhatsApp Utility ──
-  const DEFAULT_COUNTRY_CODE = "91"; // India
-
-  const sanitizePhone = (phone: string): string => {
-    // Remove all non-digit characters
-    let digits = phone.replace(/[^\d]/g, "");
-    // If starts with 0, strip it and prepend country code
-    if (digits.startsWith("0")) {
-      digits = DEFAULT_COUNTRY_CODE + digits.substring(1);
-    }
-    // If number is 10 digits (no country code), prepend default
-    if (digits.length === 10) {
-      digits = DEFAULT_COUNTRY_CODE + digits;
-    }
-    return digits;
-  };
-
-  const buildWhatsAppUrl = (apt: Appointment): string => {
-    const phone = sanitizePhone(apt.phone || "");
-    const dateStr = apt.appointment_date
-      ? new Date(apt.appointment_date).toLocaleDateString("en-IN", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      : "your preferred date";
-    const timeStr = apt.appointment_time || "your preferred time";
-    const message = `Hello ${apt.patient_name}, this is Dr. DentCare+. We received your request for a dental appointment. Are you available on ${dateStr} at ${timeStr}?`;
-    return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] transition-colors duration-300">
       {/* Header */}
@@ -554,24 +469,7 @@ const AdminDashboard = () => {
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end gap-2">
-                            {/* WhatsApp Button */}
-                            {apt.phone && (
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    className="text-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/10 border border-transparent hover:border-[#25D366]/30 transition-all duration-200 hover:shadow-[0_0_12px_rgba(37,211,102,0.15)]"
-                                    onClick={() => window.open(buildWhatsAppUrl(apt), "_blank")}
-                                  >
-                                    <MessageCircle className="w-4 h-4" />
-                                  </Button>
-                                </TooltipTrigger>
-                                <TooltipContent side="top">
-                                  <p>Message Patient via WhatsApp</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            )}
+
                             {apt.status?.toLowerCase() !== "confirmed" && (
                               <Button
                                 size="sm"
