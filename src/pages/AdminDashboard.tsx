@@ -73,8 +73,18 @@ const AdminDashboard = () => {
     navigate("/login", { replace: true });
   };
 
+  // ── Helper: format any Indian phone number to +91XXXXXXXXXX ────────────────
+  const formatPhoneIN = (raw: string): string => {
+    let digits = raw.replace(/\D/g, "");                  // strip non-digits
+    if (digits.startsWith("0")) digits = "91" + digits.slice(1); // 0XX → 91XX
+    if (digits.length === 10)   digits = "91" + digits;          // 10-digit → +91
+    return `+${digits}`;
+  };
+
   const handleConfirm = async (id: string, email: string | null) => {
     setProcessingAction({ id, type: "confirm" });
+
+    // ── Step 1: Update the DB status to "confirmed" ──────────────────────────
     const { data, error } = await supabase
       .from("appointments")
       .update({ status: "confirmed" })
@@ -85,20 +95,69 @@ const AdminDashboard = () => {
       alert(`Supabase Error Message: ${error.message}\nHint: ${error.hint}`);
       console.error("Supabase update error:", error);
       setProcessingAction(null);
-    } else if (!data || data.length === 0) {
+      return;
+    }
+
+    if (!data || data.length === 0) {
       alert("Update failed (likely due to database permissions/RLS, or ID mismatch)!");
       console.error("0 rows updated. Please check Supabase Row Level Security policies.");
       setProcessingAction(null);
-    } else {
-      setProcessingAction(null);
-      setSuccessAction({ id, type: "confirm" });
-      console.log(`Sending Confirmation Email to ${email}...`);
-      toast.success("Status Updated");
-      await fetchAppointments();
+      return;
+    }
 
-      setTimeout(() => {
-        setSuccessAction(null);
-      }, 2000);
+    // ── Step 2: DB confirmed — update UI immediately ──────────────────────────
+    const confirmedApt = data[0] as Appointment;
+    setProcessingAction(null);
+    setSuccessAction({ id, type: "confirm" });
+    await fetchAppointments();
+    setTimeout(() => setSuccessAction(null), 2000);
+
+    // ── Step 3: Trigger WhatsApp confirmation via Edge Function ───────────────
+    if (confirmedApt?.phone) {
+      try {
+        // Pre-format the phone number to +91 E.164 before sending
+        const formattedPhone = formatPhoneIN(confirmedApt.phone);
+
+        const waRes = await fetch(
+          "https://izbdbdjrcbhbepbyrgjk.supabase.co/functions/v1/send-whatsapp-confirmation",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY as string}`,
+            },
+            body: JSON.stringify({
+              patientName:     confirmedApt.patient_name,
+              phoneNumber:     formattedPhone,           // already +91XXXXXXXXXX
+              appointmentDate: confirmedApt.appointment_date,
+              appointmentTime: confirmedApt.appointment_time ?? undefined,
+            }),
+          }
+        );
+
+        if (waRes.ok) {
+          const waData = await waRes.json();
+          console.log("✅ WhatsApp sent. Twilio SID:", waData.message_sid);
+          // ── Combined success toast (as requested) ─────────────────────────
+          toast.success("✅ Database updated and WhatsApp notification triggered!");
+        } else {
+          const waErr = await waRes.json();
+          console.error("WhatsApp Edge Function error:", waErr);
+          // DB is committed — only the WhatsApp step failed
+          toast.warning(
+            `⚠️ Database updated but WhatsApp failed (${waErr?.error ?? "unknown error"}). Please notify the patient manually.`
+          );
+        }
+      } catch (waException) {
+        console.error("WhatsApp fetch threw an exception:", waException);
+        toast.warning(
+          "⚠️ Database updated but WhatsApp could not be reached. Check your network or Supabase function logs."
+        );
+      }
+    } else {
+      // No phone on record — DB is confirmed, just skip WhatsApp
+      toast.success("✅ Database updated! (No phone number — WhatsApp skipped.)");
+      console.info(`Appointment ${id} confirmed — no phone on record, skipping WhatsApp.`);
     }
   };
 
