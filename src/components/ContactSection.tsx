@@ -180,7 +180,7 @@ const ContactSection = () => {
                 </h3>
                 
                 <div>
-                  <label className="text-sm font-body font-bold text-navy mb-2 block">Preferred Date *</label>
+                  <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Preferred Date *</label>
                   <div className="relative">
                     <Input 
                       value={form.appointmentDate} 
@@ -190,13 +190,13 @@ const ContactSection = () => {
                       type="date" 
                       min={new Date().toISOString().split('T')[0]}
                       required
-                      className="bg-[#f4fbf9] border-none h-12 rounded-xl focus-visible:ring-accent text-navy relative z-10" 
+                      className="bg-[#f4fbf9] dark:bg-zinc-800 border-none h-12 rounded-xl focus-visible:ring-accent text-navy dark:text-white relative z-10" 
                     />
                   </div>
                 </div>
 
                 <div className={cn("transition-all duration-500", !form.appointmentDate ? "opacity-30 pointer-events-none grayscale" : "opacity-100")}>
-                  <label className="text-sm font-body font-bold text-navy mb-4 block">Available Time Slots</label>
+                  <label className="text-sm font-body font-bold text-navy dark:text-white mb-4 block">Available Time Slots</label>
                   <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
                     {TIME_SLOTS.map((slot) => {
                       const count = slotCounts[slot.label] || 0;
@@ -263,8 +263,8 @@ const ContactSection = () => {
               </div>
 
               <div>
-                <label className="text-sm font-body font-bold text-navy mb-2 block">Clinical Notes (Optional)</label>
-                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about any pain, specific concerns, or medical history..." rows={3} className="bg-[#f4fbf9] border-none rounded-xl focus-visible:ring-accent resize-none p-4 text-navy" />
+                <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Clinical Notes (Optional)</label>
+                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about any pain, specific concerns, or medical history..." rows={3} className="bg-[#f4fbf9] dark:bg-zinc-800 border-none rounded-xl focus-visible:ring-accent resize-none p-4 text-navy dark:text-white" />
               </div>
 
               <Button type="submit" className="w-full py-8 text-xl font-bold bg-[#0a192f] text-white hover:bg-navy/90 transition-all rounded-2xl shadow-xl flex items-center justify-center gap-3" disabled={sending || !form.preferredTime}>

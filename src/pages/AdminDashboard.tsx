@@ -427,9 +427,9 @@ const AdminDashboard = () => {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Patient</TableHead>
-                      <TableHead>Contact</TableHead>
+                      <TableHead className="hidden sm:table-cell">Contact</TableHead>
                       <TableHead
-                        className="cursor-pointer hover:bg-muted/50 transition-colors select-none"
+                        className="hidden md:table-cell cursor-pointer hover:bg-muted/50 transition-colors select-none"
                         onClick={() => handleSort("service")}
                       >
                         <div className="flex items-center">Service {renderSortIcon("service")}</div>
@@ -457,14 +457,20 @@ const AdminDashboard = () => {
                             {isPending(apt.status) && (
                               <span className="new-lead-dot" title="New lead — pending action" />
                             )}
-                            {apt.patient_name}
+                            <div>
+                              <div>{apt.patient_name}</div>
+                              <div className="text-[10px] text-muted-foreground sm:hidden flex flex-col gap-0.5 mt-0.5">
+                                <span>{apt.phone || "No phone"}</span>
+                                <span>{apt.service_type}</span>
+                              </div>
+                            </div>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <div className="text-sm">{apt.email || "—"}</div>
                           <div className="text-xs text-muted-foreground">{apt.phone || "—"}</div>
                         </TableCell>
-                        <TableCell>{apt.service_type}</TableCell>
+                        <TableCell className="hidden md:table-cell">{apt.service_type}</TableCell>
                         <TableCell>
                           <div className="text-sm">
                             {apt.appointment_date

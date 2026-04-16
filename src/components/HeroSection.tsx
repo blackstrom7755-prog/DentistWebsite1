@@ -86,16 +86,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Floating book button on mobile */}
-      <div className="fixed bottom-6 right-6 z-40 lg:hidden">
-        <Button 
-          size="lg" 
-          className="bg-[#0D9488] hover:bg-[#0D9488]/90 text-white shadow-lg rounded-full px-6 py-6" 
-          asChild
-        >
-          <a href="#contact">Book Now</a>
-        </Button>
-      </div>
+
     </section>
   );
 };
