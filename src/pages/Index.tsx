@@ -10,6 +10,8 @@ import TrustSections from "@/components/TrustSections";
 import Footer from "@/components/Footer";
 import AIChatWidget from "@/components/AIChatWidget";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
+import FloatingBookButton from "@/components/FloatingBookButton";
 import { RevealSection } from "@/hooks/useScrollReveal";
 
 const Index = () => (
@@ -41,6 +43,8 @@ const Index = () => (
       <Footer />
       <AIChatWidget />
       <FloatingCallButton />
+      <FloatingWhatsAppButton />
+      <FloatingBookButton />
     </main>
   </div>
 );

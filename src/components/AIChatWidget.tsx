@@ -98,7 +98,7 @@ const AIChatWidget = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#0D9488] text-white shadow-lg flex items-center justify-center"
+            className="fixed bottom-24 sm:bottom-[5.5rem] right-6 z-50 w-14 h-14 rounded-full bg-[#0D9488] text-white shadow-lg flex items-center justify-center"
             aria-label="Open AI Chat"
           >
             <MessageCircle className="w-6 h-6" />
@@ -113,7 +113,7 @@ const AIChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-3rem)] bg-white dark:bg-zinc-950 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden"
+            className="fixed bottom-24 sm:bottom-[5.5rem] right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-8rem)] bg-white dark:bg-zinc-950 rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#0D9488] text-white shrink-0">

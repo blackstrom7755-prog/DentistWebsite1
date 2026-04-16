@@ -2,7 +2,7 @@ import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-[#050505] border-t border-white/10 py-16 md:py-20 overflow-hidden relative">
+  <footer className="bg-[#050505] border-t border-white/10 pt-16 pb-32 md:py-20 overflow-hidden relative">
     {/* Subtle glow effect */}
     <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none rounded-full" />
     <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 blur-[120px] pointer-events-none rounded-full" />
