@@ -8,6 +8,9 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import { Progress } from "@/components/ui/progress";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 const SLOT_CAPACITY = 20;
@@ -181,18 +184,41 @@ const ContactSection = () => {
                 
                 <div>
                   <label className="text-sm font-body font-bold text-navy dark:text-white mb-2 block">Preferred Date *</label>
-                  <div className="relative">
-                    <Input 
-                      value={form.appointmentDate} 
-                      onChange={(e) => {
-                        setForm({ ...form, appointmentDate: e.target.value, preferredTime: "" });
-                      }} 
-                      type="date" 
-                      min={new Date().toISOString().split('T')[0]}
-                      required
-                      className="bg-[#f4fbf9] dark:bg-zinc-800 border-none h-12 rounded-xl focus-visible:ring-accent text-navy dark:text-white relative z-10" 
-                    />
-                  </div>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal bg-[#f4fbf9] dark:bg-zinc-800 border-none h-12 rounded-xl focus:ring-accent",
+                          !form.appointmentDate && "text-navy/40 dark:text-white/40"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4 text-mint-deep dark:text-accent" />
+                        {form.appointmentDate ? (
+                          format(new Date(form.appointmentDate), "PPP")
+                        ) : (
+                          <span>Pick a date (e.g. {format(new Date(), "PP")})</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 z-[60]" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={form.appointmentDate ? new Date(form.appointmentDate) : undefined}
+                        onSelect={(date) => {
+                          if (date) {
+                            const formattedDate = format(date, "yyyy-MM-dd");
+                            setForm({ ...form, appointmentDate: formattedDate, preferredTime: "" });
+                          }
+                        }}
+                        disabled={(date) =>
+                          date < new Date(new Date().setHours(0, 0, 0, 0))
+                        }
+                        initialFocus
+                        className="bg-white dark:bg-zinc-950"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
 
                 <div className={cn("transition-all duration-500", !form.appointmentDate ? "opacity-30 pointer-events-none grayscale" : "opacity-100")}>
