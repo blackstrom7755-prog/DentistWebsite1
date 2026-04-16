@@ -129,7 +129,7 @@ const AIChatWidget = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
-                className="flex-1 h-10 text-sm rounded-xl focus:ring-[#0D9488]"
+                className="flex-1 h-10 text-sm rounded-xl focus:ring-[#0D9488] text-slate-900 bg-white placeholder:text-slate-400"
                 disabled={loading}
               />
               <Button type="submit" size="icon" disabled={loading || !input.trim()} className="h-10 w-10 bg-[#0D9488] hover:bg-[#0b7a6f] shrink-0">
