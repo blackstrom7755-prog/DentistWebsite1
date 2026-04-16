@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import {
   CalendarCheck, Clock, Users, Search, Check, X, LogOut,
   Stethoscope, Loader2, ArrowDown, ArrowUp, ArrowUpDown,
-  Download, MessageCircle,
+  Download, MessageCircle, Archive,
 } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -39,8 +39,8 @@ const AdminDashboard = () => {
   const [isPolling, setIsPolling] = useState(false);
   const [sortBy, setSortBy] = useState<"date" | "service" | "status" | "recent">("recent");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [processingAction, setProcessingAction] = useState<{ id: string; type: "confirm" | "cancel" } | null>(null);
-  const [successAction, setSuccessAction] = useState<{ id: string; type: "confirm" | "cancel" } | null>(null);
+  const [processingAction, setProcessingAction] = useState<{ id: string; type: "confirm" | "cancel" | "archive" } | null>(null);
+  const [successAction, setSuccessAction] = useState<{ id: string; type: "confirm" | "cancel" | "archive" } | null>(null);
 
   const fetchAppointments = useCallback(async (silent = false, isPollingFetch = false) => {
     if (!silent) setLoading(true);
@@ -48,6 +48,7 @@ const AdminDashboard = () => {
     const { data, error } = await supabase
       .from("appointments")
       .select("*")
+      .neq('status', 'archived')
       .order("created_at", { ascending: false });
     if (error) {
       toast.error("Failed to load appointments");
@@ -106,6 +107,25 @@ const AdminDashboard = () => {
     setTimeout(() => setSuccessAction(null), 2000);
 
     toast.success("✅ Database updated!");
+  };
+
+  const handleArchive = async (id: string) => {
+    setProcessingAction({ id, type: "archive" });
+    
+    const { error } = await supabase
+      .from("appointments")
+      .update({ status: "archived" })
+      .eq("id", Number(id));
+
+    if (error) {
+      toast.error(`Error archiving: ${error.message}`);
+      setProcessingAction(null);
+      return;
+    }
+
+    setAppointments((prev) => prev.filter((a) => a.id !== id));
+    setProcessingAction(null);
+    toast.success("Appointment Moved to History");
   };
 
   const handleCancel = async (id: string, email: string | null) => {
@@ -515,6 +535,21 @@ const AdminDashboard = () => {
                                 )}
                               </Button>
                             )}
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              disabled={processingAction !== null}
+                              className="bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-slate-300 ml-1"
+                              onClick={() => handleArchive(apt.id)}
+                            >
+                              {processingAction?.id === apt.id && processingAction.type === "archive" ? (
+                                <>...</>
+                              ) : (
+                                <>
+                                  <Archive className="w-3 h-3 mr-1" /> Mark as Done
+                                </>
+                              )}
+                            </Button>
                           </div>
                         </TableCell>
                       </TableRow>
