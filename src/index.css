@@ -97,7 +97,12 @@
     @apply bg-background text-foreground font-body transition-colors duration-300;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     @apply text-teal-600;
   }
@@ -107,27 +112,35 @@
   .font-display {
     font-family: var(--font-display);
   }
+
   .font-body {
     font-family: var(--font-body);
   }
+
   .text-brand-teal {
     @apply text-teal-600;
   }
+
   .gradient-hero {
     background: var(--gradient-hero);
   }
+
   .gradient-mint {
     background: var(--gradient-mint);
   }
+
   .gradient-card {
     background: var(--gradient-card);
   }
+
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
+
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
   }
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
@@ -179,27 +192,51 @@ html {
 }
 
 @keyframes orb-float-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-30px, 20px) scale(1.05); }
-  66% { transform: translate(20px, -15px) scale(0.95); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-30px, 20px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(20px, -15px) scale(0.95);
+  }
 }
 
 @keyframes orb-float-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(25px, -20px) scale(1.08); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(25px, -20px) scale(1.08);
+  }
 }
 
 @keyframes orb-float-3 {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.4; }
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.4;
+  }
 }
 
 .login-glass-card {
-  background: linear-gradient(
-    135deg,
-    hsla(210, 50%, 15%, 0.6) 0%,
-    hsla(210, 40%, 10%, 0.8) 100%
-  );
+  background: linear-gradient(135deg,
+      hsla(210, 50%, 15%, 0.6) 0%,
+      hsla(210, 40%, 10%, 0.8) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid hsla(168, 80%, 78%, 0.12);
@@ -225,16 +262,19 @@ html {
 .login-input:focus {
   border-color: hsla(168, 80%, 78%, 0.35) !important;
   box-shadow: 0 0 0 3px hsla(168, 80%, 78%, 0.1),
-              0 0 20px hsla(168, 80%, 78%, 0.08) !important;
+    0 0 20px hsla(168, 80%, 78%, 0.08) !important;
   outline: none !important;
 }
 
 /* ── New-Lead Pulsing Dot ── */
 @keyframes pulse-dot {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.5;
     transform: scale(1.6);
@@ -253,11 +293,9 @@ html {
 
 /* ── Patient Testimonial Cards ── */
 .testimonial-card {
-  background: linear-gradient(
-    160deg,
-    hsla(210, 50%, 14%, 0.65) 0%,
-    hsla(210, 40%, 9%, 0.85) 100%
-  );
+  background: linear-gradient(160deg,
+      hsla(210, 50%, 14%, 0.65) 0%,
+      hsla(210, 40%, 9%, 0.85) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid hsla(168, 80%, 78%, 0.08);
@@ -317,4 +355,9 @@ html {
 /* ── Global Theme Transition ── */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+html,
+body {
+  overflow-x: hidden;
 }
