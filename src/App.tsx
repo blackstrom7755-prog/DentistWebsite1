@@ -10,7 +10,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +21,6 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <Analytics />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -38,6 +37,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </AuthProvider>
